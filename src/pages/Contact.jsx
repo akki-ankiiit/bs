@@ -9,7 +9,7 @@ import { SP_THEMES, SP_TYPE } from '../theme/theme';
 function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   const T = SP_THEMES[themeKey];
   const F = SP_TYPE[typeKey];
-  
+
   const [mint, lilac, sky, butter, peach] = T.pastels;
   const isMobile = useIsMobile();
 
@@ -35,6 +35,19 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   const [activeSvc, setActiveSvc] = React.useState('Content Campaign');
   const [activeBudget, setActiveBudget] = React.useState('₹5–12L');
 
+  const sideCardStyle = (bg) => ({
+    background: bg, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24, position: 'relative',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+  });
+  const sideCardEnter = e => {
+    e.currentTarget.style.transform = 'translateY(-4px)';
+    e.currentTarget.style.boxShadow = `4px 6px 0 ${T.ink}`;
+  };
+  const sideCardLeave = e => {
+    e.currentTarget.style.transform = 'translateY(0)';
+    e.currentTarget.style.boxShadow = 'none';
+  };
+
   return (
     <div style={{ background: T.paper, color: T.ink, fontFamily: F.body, minHeight: '100vh' }}>
       <SPNav T={T} F={F} active="Contact" />
@@ -47,8 +60,8 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         </div>
 
         <div style={{ position: 'relative' }}>
-          {!isMobile && <SPStatusSticker T={T} F={F} top={-10} left={120} rotate={-7} variant="tape" tape={T.popA} bg={mint} icon="◉" iconBg={T.ink} label="Right now" name="Taking briefs" />}
-          {!isMobile && <SPStatusSticker T={T} F={F} top={130} right={140} rotate={8} variant="torn" bg={butter} icon="✎" iconBg={T.popB} label="Team status" name="Writing pitches" />}
+          {!isMobile && <SPStatusSticker T={T} F={F} top={10} left={120} rotate={-7} variant="tape" tape={T.popA} bg={mint} icon="◉" iconBg={T.ink} label="Right now" name="Taking briefs" />}
+          {!isMobile && <SPStatusSticker T={T} F={F} top={300} right={140} rotate={8} variant="torn" bg={butter} icon="✎" iconBg={T.popB} label="Team status" name="Writing pitches" />}
           {!isMobile && <SPStar size={70} color={T.popA} rotate={18} top={60} right={60} />}
 
           <h1 style={{ fontFamily: F.display, fontSize: isMobile ? '80px' : 'clamp(140px, 18vw, 260px)', lineHeight: 0.84, fontWeight: 700, letterSpacing: '-0.05em', margin: 0, textAlign: 'center' }}>
@@ -56,7 +69,7 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
           </h1>
           <SPParallax speed={0.04}>
             <p style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 22, textAlign: 'center', maxWidth: 640, margin: '24px auto 0', opacity: 0.85, paddingTop: 40 }}>
-              Shortest path: fill this in. Longer path: email us. Longest: LinkedIn (we check on Fridays).
+              Shortest path: fill this in. Longer path: email us. Longest: LinkedIn <br />(we check on Fridays).
             </p>
           </SPParallax>
         </div>
@@ -73,8 +86,8 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
             boxShadow: `6px 6px 0 ${T.ink}`,
             transition: 'transform 0.3s ease, box-shadow 0.3s ease'
           }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `8px 12px 0 ${T.ink}`; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `6px 6px 0 ${T.ink}`; }}>
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `8px 12px 0 ${T.ink}`; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `6px 6px 0 ${T.ink}`; }}>
             <div style={{
               position: 'absolute', top: -16, left: 40, zIndex: 10,
               background: T.popA, color: T.paper, padding: '8px 18px', borderRadius: 999,
@@ -136,25 +149,28 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
                 padding: '18px 32px', borderRadius: 999, fontSize: 15, fontWeight: 500,
                 fontFamily: F.body, cursor: 'pointer',
                 boxShadow: `3px 3px 0 ${T.ink}`,
-              }}>Send brief →</button>
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `5px 6px 0 ${T.ink}`; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `3px 3px 0 ${T.ink}`; }}>Send brief →</button>
             </div>
           </div>
 
           {/* Side */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 20 }}>
-            <div style={{ background: mint, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24 }}>
+            <div style={sideCardStyle(mint)} onMouseEnter={sideCardEnter} onMouseLeave={sideCardLeave}>
               <div style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 10 }}>Or just email</div>
               <a href="mailto:hello@blackspace.media" style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em', textDecoration: 'none', color: T.ink, display: 'block' }}>hello@blackspace.media</a>
               <div style={{ fontSize: 13, marginTop: 12, opacity: 0.75 }}>Hits all three founders at once. Someone replies within a day.</div>
             </div>
 
-            <div style={{ background: lilac, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24 }}>
+            <div style={sideCardStyle(lilac)} onMouseEnter={sideCardEnter} onMouseLeave={sideCardLeave}>
               <div style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 10 }}>Walk-ins welcome</div>
               <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 600, letterSpacing: '-0.015em' }}>Koramangala 5th Block</div>
               <div style={{ fontSize: 13, marginTop: 6, opacity: 0.75 }}>Bengaluru, IN — 560095. Coffee, tea, tap water, biscuits.</div>
             </div>
 
-            <div style={{ background: butter, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24 }}>
+            <div style={sideCardStyle(butter)} onMouseEnter={sideCardEnter} onMouseLeave={sideCardLeave}>
               <div style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 10 }}>Other frequencies</div>
               <div style={{ display: 'grid', gap: 8, fontSize: 14 }}>
                 <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Instagram</span><span>@blackspace.media ↗</span></Link>
@@ -163,7 +179,7 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
               </div>
             </div>
 
-            <div style={{ background: peach, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24, position: 'relative' }}>
+            <div style={sideCardStyle(peach)} onMouseEnter={sideCardEnter} onMouseLeave={sideCardLeave}>
               <SPStar size={40} color={T.popA} rotate={15} top={-12} right={-10} />
               <div style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 10 }}>Careers</div>
               <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 600, letterSpacing: '-0.015em' }}>Join us?</div>

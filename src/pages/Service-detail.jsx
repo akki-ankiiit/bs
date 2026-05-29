@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
 import { useIsMobile } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
+import { Target, Calendar, Lightbulb, Map, Rocket, Megaphone, Sprout, BarChart, Smartphone, Play, Mic, User, Tv, BookOpen, Sparkles, PenTool, Music, Image as ImageIcon, Bot, TrendingUp, RefreshCw, Search, Brain, Settings, FileText, CheckCircle, Monitor, Globe, UserSquare, MousePointerClick, Check } from 'lucide-react';
 
 
 export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
@@ -34,24 +35,24 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
 
   // Pinterest format placeholder video images
   const masonryVideos = [
-    { height: 500, src: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-    { height: 350, src: 'https://images.unsplash.com/photo-1528148343865-51218c4a13e6?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
-    { height: 600, src: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4' },
-    { height: 400, src: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' },
-    { height: 700, src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4' },
-    { height: 450, src: 'https://images.unsplash.com/photo-1518131672697-613bc04fa4da?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4' },
-    { height: 550, src: 'https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4' },
-    { height: 380, src: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4' },
-    { height: 480, src: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' },
+    { height: 380, src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+    { height: 260, src: 'https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
+    { height: 420, src: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4' },
+    { height: 320, src: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' },
+    { height: 480, src: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4' },
+    { height: 340, src: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4' },
+    { height: 400, src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4' },
+    { height: 280, src: 'https://images.unsplash.com/photo-1518131672697-613bc04fa4da?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4' },
+    { height: 360, src: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' },
   ];
 
   // Carousel State
   const carouselItems = [
-    { title: 'The 5AM Film', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', poster: 'https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&q=80&w=1000' },
-    { title: 'Monarc System', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', poster: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1000' },
-    { title: 'Office Hours', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', poster: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1000' },
-    { title: 'Skin Spec', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', poster: 'https://images.unsplash.com/photo-1518131672697-613bc04fa4da?auto=format&fit=crop&q=80&w=1000' },
-    { title: 'Heirloom Site', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', poster: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'The 5AM Film', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', poster: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'Monarc System', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', poster: 'https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'Office Hours', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', poster: 'https://images.unsplash.com/photo-1506744032336-ce4b8aa92318?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'Skin Spec', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', poster: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'Heirloom Site', vid: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', poster: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000' },
   ];
   const [activeIdx, setActiveIdx] = React.useState(2);
 
@@ -59,25 +60,54 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     <React.Fragment>
       {/* Coverflow Video Carousel */}
       <section style={{ padding: isMobile ? '60px 0' : '100px 0', background: T.ink, color: T.paper, borderTop: `1px solid ${T.ink}`, overflow: 'hidden' }}>
-        <div style={{ padding: '0 40px', marginBottom: 60 }}>
+        <div style={{ padding: '0 40px', marginBottom: 20 }}>
            <SPSectionHead T={T} F={F} num="§ 01 / Featured" title="Hero" titleIt="Reels." dek="Click cards to bring them into focus." color={T.paper} />
         </div>
         
         {/* Carousel Container */}
         <div style={{ 
-          position: 'relative', height: isMobile ? 450 : 700, width: '100%', 
+          position: 'relative', height: isMobile ? 420 : 540, width: '100%', 
           display: 'flex', alignItems: 'center', justifyContent: 'center'
         }}>
+          {/* Ambient Glow */}
+          <div style={{
+            position: 'absolute',
+            width: isMobile ? '80%' : '50%', height: '80%',
+            background: 'radial-gradient(circle, rgba(220, 20, 20, 0.4) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            zIndex: 0,
+            pointerEvents: 'none',
+          }}></div>
+
+          {/* Left Button */}
+          <button 
+            onClick={() => setActiveIdx(Math.max(0, activeIdx - 1))}
+            disabled={activeIdx === 0}
+            style={{ position: 'absolute', left: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: activeIdx === 0 ? 'default' : 'pointer', opacity: activeIdx === 0 ? 0 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18, pointerEvents: activeIdx === 0 ? 'none' : 'auto' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
+          >←</button>
+
+          {/* Right Button */}
+          <button 
+            onClick={() => setActiveIdx(Math.min(carouselItems.length - 1, activeIdx + 1))}
+            disabled={activeIdx === carouselItems.length - 1}
+            style={{ position: 'absolute', right: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: activeIdx === carouselItems.length - 1 ? 'default' : 'pointer', opacity: activeIdx === carouselItems.length - 1 ? 0 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18, pointerEvents: activeIdx === carouselItems.length - 1 ? 'none' : 'auto' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
+          >→</button>
+
           {carouselItems.map((item, i) => {
             const offset = i - activeIdx;
             const isActive = i === activeIdx;
             const distance = Math.abs(offset);
             
             const scale = isActive ? 1 : 1 - (distance * 0.15);
-            const translateX = offset * (isMobile ? 200 : 360);
-            const blur = isActive ? 0 : distance * 4;
+            const translateX = offset * (isMobile ? 160 : 260); // tighter overlap
+            const blur = isActive ? 0 : distance * 2;
             const zIndex = 10 - distance;
-            const opacity = isActive ? 1 : Math.max(0, 1 - (distance * 0.4));
+            const brightness = isActive ? 1 : Math.max(0.4, 1 - (distance * 0.4));
+            const opacity = distance > 2 ? 0 : 1;
             
             return (
               <div 
@@ -85,15 +115,15 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
                 onClick={() => setActiveIdx(i)}
                 style={{ 
                   position: 'absolute',
-                  width: isMobile ? 280 : 540, 
-                  height: isMobile ? 400 : 640, 
+                  width: isMobile ? 240 : 360, 
+                  height: isMobile ? 360 : 500, 
                   background: '#111', 
                   borderRadius: 24,
                   overflow: 'hidden', 
                   border: `1px solid rgba(255,255,255,0.15)`,
-                  boxShadow: isActive ? `0 24px 60px rgba(0,0,0,0.6)` : 'none',
+                  boxShadow: isActive ? `0 24px 60px rgba(0,0,0,0.8), 0 0 100px rgba(220, 20, 20, 0.4)` : '0 12px 30px rgba(0,0,0,0.5)',
                   transform: `translateX(${translateX}px) scale(${scale})`,
-                  filter: `blur(${blur}px)`,
+                  filter: `blur(${blur}px) brightness(${brightness})`,
                   opacity: opacity,
                   zIndex: zIndex,
                   transition: 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
@@ -111,24 +141,26 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
                      ref={el => { if (el && isActive && el.paused) { el.play().catch(()=>{}); } else if (el && !isActive && !el.paused) { el.pause(); } }}
                 />
                 <div style={{ 
-                  position: 'absolute', top: 24, left: 24, background: T.paper, color: T.ink, 
-                  padding: '6px 14px', borderRadius: 999, fontSize: 13, fontWeight: 600,
+                  position: 'absolute', top: 20, left: 20, background: T.paper, color: T.ink, 
+                  padding: '4px 12px', borderRadius: 999, fontSize: 11, fontWeight: 600,
                   opacity: isActive ? 1 : 0, transition: 'opacity 0.3s ease 0.2s'
                 }}>00:45</div>
                 
                 <div style={{ 
-                  position: 'absolute', bottom: 24, left: 24, right: 24,
+                  position: 'absolute', bottom: 20, left: 20, right: 20,
                   opacity: isActive ? 1 : 0, transition: 'opacity 0.3s ease 0.2s', pointerEvents: 'none'
                 }}>
-                  <div style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 8, opacity: 0.8 }}>Campaign</div>
-                  <h3 style={{ fontFamily: F.display, fontSize: 32, margin: 0, fontWeight: 600 }}>{item.title}</h3>
+                  <div style={{ fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 6, opacity: 0.8 }}>Campaign</div>
+                  <h3 style={{ fontFamily: F.display, fontSize: 24, margin: 0, fontWeight: 600 }}>{item.title}</h3>
                 </div>
                 
                 <div style={{ 
                   position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none',
                   opacity: isActive ? 1 : 0, transition: 'opacity 0.3s ease 0.2s'
                 }}>
-                  <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.paper, fontSize: 40, pointerEvents: 'auto', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer' }}>▶</div>
+                  <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.paper, fontSize: 24, pointerEvents: 'auto', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', transition: 'transform 0.3s ease, background 0.3s ease' }}
+                       onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.25)'; }}
+                       onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}>▶</div>
                 </div>
               </div>
             );
@@ -137,10 +169,10 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
       </section>
 
       {/* Pinterest Masonry Grid */}
-      <section style={{ padding: isMobile ? '60px 20px' : '120px 40px' }}>
+      <section style={{ padding: isMobile ? '60px 20px' : '100px 40px' }}>
          <SPSectionHead T={T} F={F} num="§ 02 / Archive" title="Project" titleIt="Archive." dek="A visual dump of what we've been up to." />
          
-         <div style={{ columnCount: isMobile ? 2 : 3, columnGap: isMobile ? 12 : 24 }}>
+         <div style={{ columnCount: isMobile ? 2 : 4, columnGap: isMobile ? 12 : 16 }}>
             {masonryVideos.map((v, i) => (
               <div 
                 key={i} 
@@ -148,31 +180,44 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
                   display: 'inline-block',
                   width: '100%', 
                   breakInside: 'avoid',
-                  marginBottom: isMobile ? 12 : 24 
+                  marginBottom: isMobile ? 12 : 16 
                 }}
               >
                 <div style={{
-                  width: '100%', height: isMobile ? v.height * 0.6 : v.height, background: '#e0e0e0', borderRadius: 20,
+                  width: '100%', height: isMobile ? v.height * 0.6 : v.height, background: '#e0e0e0', borderRadius: 16,
                   position: 'relative', overflow: 'hidden', cursor: 'pointer',
-                  border: `1px solid ${T.ink}22`
+                  border: `1px solid ${T.ink}22`,
+                }}
+                onMouseEnter={e => { 
+                  const playBtn = e.currentTarget.querySelector('.sp-play');
+                  if (playBtn) { playBtn.style.opacity = 1; playBtn.style.transform = 'scale(1)'; }
+                  const vid = e.currentTarget.querySelector('video');
+                  if (vid) vid.play().catch(()=>{}); 
+                }}
+                onMouseLeave={e => { 
+                  const playBtn = e.currentTarget.querySelector('.sp-play');
+                  if (playBtn) { playBtn.style.opacity = 0; playBtn.style.transform = 'scale(0.8)'; }
+                  const vid = e.currentTarget.querySelector('video');
+                  if (vid) vid.pause(); 
                 }}>
                   <video 
                      src={v.vid} 
                      poster={v.src}
                      muted playsInline loop
                      style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, transition: 'transform 0.4s ease' }} 
-                     onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.play(); }}
-                     onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.pause(); }}
                   />
                   
                   {/* Overlay */}
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%)', opacity: 0.8, pointerEvents: 'none' }}></div>
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%)', pointerEvents: 'none' }}></div>
                   
-                  <div style={{ position: 'absolute', top: 12, right: 12, background: T.paper, color: T.ink, width: isMobile ? 32 : 44, height: isMobile ? 32 : 44, borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: isMobile ? 14 : 18, border: `1px solid ${T.ink}22`, pointerEvents: 'none' }}>▶</div>
+                  {/* Center Play Button */}
+                  <div className="sp-play" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0, transform: 'scale(0.8)', transition: 'opacity 0.3s ease, transform 0.3s ease', pointerEvents: 'none' }}>
+                    <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.paper, fontSize: 16, border: '1px solid rgba(255,255,255,0.3)' }}>▶</div>
+                  </div>
                   
                   <div style={{ position: 'absolute', bottom: 16, left: 16, color: T.paper, pointerEvents: 'none' }}>
                     <div style={{ fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>Brand snippet</div>
-                    <div style={{ fontFamily: F.display, fontSize: isMobile ? 16 : 22, fontWeight: 600 }}>Visual Archive {i+1}</div>
+                    <div style={{ fontFamily: F.display, fontSize: isMobile ? 14 : 18, fontWeight: 600 }}>Visual Archive {i+1}</div>
                   </div>
                 </div>
               </div>
@@ -182,79 +227,185 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     </React.Fragment>
   );
 
-  const renderGenericLayout = () => {
-    // Tailored content dictionary based on service slug
-    const tailoredData = {
-      'content-campaigns': [
-        { col: 8, bg: T.ink, color: T.paper, height: isMobile ? 300 : 440, title: 'End-to-End Production', tag: 'Shoot & Cut', img: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200' },
-        { col: 4, bg: data.sticker, color: T.ink, height: isMobile ? 240 : 440, title: 'Concept Scripting', tag: 'Pre-production', img: '' },
-        { col: 4, bg: T.paper, color: T.ink, height: isMobile ? 240 : 440, title: 'Color Grade', tag: 'Post', img: '' },
-        { col: 8, bg: lilac, color: T.ink, height: isMobile ? 300 : 440, title: 'Platform Distribution', tag: 'Strategy', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200' }
-      ],
-      'scripts': [
-        { col: 8, bg: T.ink, color: T.paper, height: isMobile ? 300 : 440, title: 'Commercial Ads', tag: 'TVC & Digital', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200' },
-        { col: 4, bg: data.sticker, color: T.ink, height: isMobile ? 240 : 440, title: 'Social Reels', tag: 'Short Form', img: '' },
-        { col: 4, bg: T.paper, color: T.ink, height: isMobile ? 240 : 440, title: 'Brand Manifestos', tag: 'Long Form', img: '' },
-        { col: 8, bg: butter, color: T.ink, height: isMobile ? 300 : 440, title: 'Explainer Series', tag: 'Educational', img: 'https://images.unsplash.com/photo-1455390582262-044cdead2708?auto=format&fit=crop&w=1200' }
-      ],
-      'ai-workflows': [
-        { col: 8, bg: T.ink, color: T.paper, height: isMobile ? 300 : 440, title: 'Midjourney Prompting', tag: 'Generation', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200' },
-        { col: 4, bg: data.sticker, color: T.ink, height: isMobile ? 240 : 440, title: 'Voice Clones', tag: 'Audio', img: '' },
-        { col: 4, bg: T.paper, color: T.ink, height: isMobile ? 240 : 440, title: 'Automated QC', tag: 'Pipeline', img: '' },
-        { col: 8, bg: mint, color: T.ink, height: isMobile ? 300 : 440, title: 'Variant Scaling', tag: 'Performance', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200' }
-      ],
-      'brand-identity': [
-        { col: 8, bg: T.ink, color: T.paper, height: isMobile ? 300 : 440, title: 'Logo Systems', tag: 'Marks', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200' },
-        { col: 4, bg: data.sticker, color: T.ink, height: isMobile ? 240 : 440, title: 'Color Theory', tag: 'Palettes', img: '' },
-        { col: 4, bg: T.paper, color: T.ink, height: isMobile ? 240 : 440, title: 'Typography', tag: 'Typefaces', img: '' },
-        { col: 8, bg: lilac, color: T.ink, height: isMobile ? 300 : 440, title: 'Brand Guidelines', tag: 'Rules', img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200' }
-      ],
-      'websites-social': [
-        { col: 8, bg: T.ink, color: T.paper, height: isMobile ? 300 : 440, title: 'Framer Sites', tag: 'Web', img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200' },
-        { col: 4, bg: data.sticker, color: T.ink, height: isMobile ? 240 : 440, title: 'Feed Curation', tag: 'Instagram', img: '' },
-        { col: 4, bg: T.paper, color: T.ink, height: isMobile ? 240 : 440, title: 'Link in Bio', tag: 'Conversion', img: '' },
-        { col: 8, bg: sky, color: T.ink, height: isMobile ? 300 : 440, title: 'Social Playbooks', tag: 'Strategy', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1200' }
-      ]
+  const renderBespokeLayout = () => {
+    const CONTENT = {
+      'content-campaigns': {
+        hero: { t1: 'Content Campaigns That Create ', hl: 'Attention,', t2: 'Not Just Posts.', sub: 'We build content systems designed to launch products, grow communities, and keep your brand consistently visible across platforms.', cta: 'Start a Campaign →', color: mint },
+        wwd: { t: 'What We Do', sub: 'A content campaign is more than posting regularly.', text: 'We create strategic content ecosystems that connect your business goals with audience behavior, ensuring every piece of content serves a purpose.' },
+        deliv: { t: 'Deliverables', items: [
+          { t: "Campaign Strategy", c: mint, i: Target, span: 2 }, { t: "Content Calendar", c: lilac, i: Calendar, span: 1 }, { t: "Creative Concepts", c: butter, i: Lightbulb, span: 1 }, { t: "Platform Planning", c: sky, i: Map, span: 2 }, { t: "Launch Campaigns", c: peach, i: Rocket, span: 2 }, { t: "Product Awareness", c: butter, i: Megaphone, span: 1 }, { t: "Community Growth", c: mint, i: Sprout, span: 1 }, { t: "Performance Reporting", c: lilac, i: BarChart, span: 2 }
+        ]},
+        process: { t: 'Method', title: 'Our Process.', items: [ { t: "Research & Positioning", c: lilac }, { t: "Campaign Planning", c: butter }, { t: "Content Production", c: sky }, { t: "Distribution", c: peach }, { t: "Optimization", c: mint } ] },
+        results: { t: 'The Results', items: [ { t: "Stronger brand visibility", c: mint }, { t: "Better audience engagement", c: lilac }, { t: "Consistent growth", c: peach }, { t: "Higher conversion opportunities", c: butter } ] }
+      },
+      'scripts': {
+        hero: { t1: 'Stories Designed To ', hl: 'Hold Attention.', t2: '', sub: 'We write scripts that transform ideas into engaging content for social media, ads, YouTube, podcasts, and brand films.', cta: 'Get a Script →', color: lilac },
+        wwd: { t: 'What We Do', sub: 'Every great piece of content starts with a strong narrative.', text: 'Our team develops scripts that capture attention within seconds and maintain engagement throughout the entire experience.' },
+        deliv: { t: 'Deliverables', items: [
+          { t: "Reels Scripts", c: sky, i: Smartphone, span: 1 }, { t: "YouTube Scripts", c: peach, i: Play, span: 2 }, { t: "Podcast Outlines", c: lilac, i: Mic, span: 1 }, 
+          { t: "Founder Videos", c: mint, i: User, span: 1 }, { t: "Ad Scripts", c: butter, i: Tv, span: 1 }, { t: "Launch Scripts", c: sky, i: Rocket, span: 2 }, 
+          { t: "Brand Storytelling", c: peach, i: BookOpen, span: 4 }
+        ]},
+        process: { t: 'Method', title: 'Script Framework.', items: [ { t: "Hook", c: mint }, { t: "Problem", c: sky }, { t: "Insight", c: butter }, { t: "Solution", c: lilac }, { t: "Call-To-Action", c: peach } ] },
+        results: { t: 'Ideal For', items: [ { t: "Founders", c: mint }, { t: "Creators", c: lilac }, { t: "Startups", c: sky }, { t: "Agencies & Brands", c: butter } ] }
+      },
+      'video-edits': {
+        hero: { t1: 'Editing That Makes Content Feel ', hl: 'Premium.', t2: '', sub: 'We transform raw footage into polished visual stories designed for engagement and performance.', cta: 'Edit My Content →', color: peach },
+        wwd: { t: 'What We Do', sub: 'Every cut serves a purpose.', text: 'Our editing process combines storytelling, motion design, pacing, and platform-specific optimization.' },
+        deliv: { t: 'Deliverables', items: [
+          { t: "Short Form Reels", c: butter, i: Smartphone, span: 2 }, { t: "YouTube Videos", c: sky, i: Play, span: 1 }, { t: "Commercial Edits", c: lilac, i: Tv, span: 1 }, 
+          { t: "Motion Graphics", c: mint, i: Sparkles, span: 1 }, { t: "Captions", c: peach, i: FileText, span: 1 }, { t: "Sound Design", c: butter, i: Music, span: 2 },
+          { t: "Color Grading", c: sky, i: PenTool, span: 2 }, { t: "Thumbnail Support", c: lilac, i: ImageIcon, span: 2 }
+        ]},
+        process: { t: 'Method', title: 'Editing Styles.', items: [ { t: "Luxury", c: lilac }, { t: "Minimal", c: mint }, { t: "Documentary", c: sky }, { t: "Fast-Paced Social", c: butter }, { t: "Corporate", c: peach } ] },
+        results: { t: 'Outcomes', items: [ { t: "Higher watch time", c: mint }, { t: "Better retention", c: sky }, { t: "Professional perception", c: lilac }, { t: "Increased engagement", c: peach } ] }
+      },
+      'ai-workflows': {
+        hero: { t1: 'Automate Repetitive Work. ', hl: 'Scale', t2: ' Creative Output.', sub: 'We design AI-powered systems that save time, reduce manual effort, and improve business efficiency.', cta: 'Build My Workflow →', color: sky },
+        wwd: { t: 'What We Do', sub: 'From content generation to lead management, we help teams work smarter.', text: 'Blackspace creates custom AI workflows tailored to your business operations.' },
+        deliv: { t: 'Deliverables', items: [
+          { t: "AI Content Systems", c: mint, i: Bot, span: 2 }, { t: "Lead Automation", c: sky, i: TrendingUp, span: 2 },
+          { t: "CRM Integrations", c: lilac, i: RefreshCw, span: 1 }, { t: "Reporting Dashboards", c: peach, i: BarChart, span: 1 }, { t: "Research Automation", c: butter, i: Search, span: 2 }, 
+          { t: "Knowledge Systems", c: sky, i: Brain, span: 2 }, { t: "Process Automation", c: mint, i: Settings, span: 2 }
+        ]},
+        process: { t: 'Method', title: 'Workflow Examples.', items: [ { t: "Idea → Script → Publish", c: butter }, { t: "Lead → Qualify → CRM", c: sky }, { t: "Meeting → Notes → Task", c: lilac } ] },
+        results: { t: 'Benefits', items: [ { t: "Save Hours Weekly", c: mint }, { t: "Reduce Human Errors", c: sky }, { t: "Faster Execution", c: lilac }, { t: "Scalable Operations", c: butter } ] }
+      },
+      'brand-identity': {
+        hero: { t1: 'Build A Brand People ', hl: 'Remember.', t2: '', sub: 'We create visual identities that communicate credibility, personality, and market positioning.', cta: 'Build My Brand →', color: butter },
+        wwd: { t: 'What We Do', sub: 'A brand is more than a logo.', text: 'We design complete identity systems that help businesses appear consistent across every touchpoint.' },
+        deliv: { t: 'Deliverables', items: [
+          { t: "Logo Design", c: peach, i: Target, span: 1 }, { t: "Brand Strategy", c: lilac, i: Brain, span: 2 }, { t: "Color System", c: mint, i: PenTool, span: 1 },
+          { t: "Typography System", c: sky, i: FileText, span: 2 }, { t: "Brand Guidelines", c: butter, i: BookOpen, span: 2 },
+          { t: "Visual Language", c: lilac, i: UserSquare, span: 2 }, { t: "Brand Assets", c: peach, i: ImageIcon, span: 2 }
+        ]},
+        process: { t: 'Method', title: 'Identity Framework.', items: [ { t: "Positioning", c: lilac }, { t: "Personality", c: butter }, { t: "Visual Direction", c: mint }, { t: "Brand System", c: sky }, { t: "Launch", c: peach } ] },
+        results: { t: 'Outcomes', items: [ { t: "Professional perception", c: mint }, { t: "Strong recognition", c: sky }, { t: "Consistent communication", c: lilac }, { t: "Better trust", c: butter } ] }
+      },
+      'websites-social': {
+        hero: { t1: 'Digital Experiences Designed For ', hl: 'Growth.', t2: '', sub: 'From websites to social presence, we build digital ecosystems that convert attention into action.', cta: 'Start Your Project →', color: mint },
+        wwd: { t: 'What We Do', sub: 'We create websites and social media systems that work together to strengthen your online presence.', text: 'Your digital ecosystem is your most important asset.' },
+        deliv: { t: 'Deliverables', items: [
+          { t: "Websites", c: sky, i: Globe, span: 2 }, { t: "Landing Pages", c: butter, i: MousePointerClick, span: 1 }, { t: "Portfolio Sites", c: peach, i: ImageIcon, span: 1 },
+          { t: "Profile Design", c: lilac, i: User, span: 1 }, { t: "Social Branding", c: mint, i: Sparkles, span: 2 }, { t: "Content Templates", c: sky, i: Smartphone, span: 1 },
+          { t: "Conversion Design", c: butter, i: CheckCircle, span: 2 }, { t: "Responsive Dev", c: lilac, i: Monitor, span: 2 }
+        ]},
+        process: { t: 'Method', title: 'Process.', items: [ { t: "Strategy", c: mint }, { t: "Design", c: sky }, { t: "Development", c: lilac }, { t: "Launch", c: butter }, { t: "Growth", c: peach } ] },
+        results: { t: 'Outcomes', items: [ { t: "Better first impressions", c: mint }, { t: "Increased credibility", c: sky }, { t: "Higher conversion rates", c: lilac }, { t: "Stronger digital presence", c: butter } ] }
+      }
     };
     
-    // Default fallback
-    const defaultData = [
-      { col: 8, bg: T.ink, color: T.paper, height: isMobile ? 300 : 440, title: 'Flagship Campaign', tag: 'Showcase', img: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200' },
-      { col: 4, bg: data.sticker, color: T.ink, height: isMobile ? 240 : 440, title: 'Core Mechanics', tag: 'Strategy', img: '' },
-      { col: 4, bg: T.paper, color: T.ink, height: isMobile ? 240 : 440, title: 'Concept Deck', tag: 'Deliverables', img: '' },
-      { col: 8, bg: lilac, color: T.ink, height: isMobile ? 300 : 440, title: 'Execution Phase', tag: 'Process', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200' }
-    ];
-
-    const bentoBoxes = tailoredData[slug] || defaultData;
+    const d = CONTENT[slug] || CONTENT['content-campaigns'];
 
     return (
-      <section style={{ padding: isMobile ? '60px 20px' : '100px 40px', borderTop: `1px solid ${T.ink}` }}>
-        <SPSectionHead T={T} F={F} num="§ 01 / Selected Work" title="Case" titleIt="Studies." dek={`Recent work in ${data.name}.`} />
-        
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12, 1fr)', gap: 16 }}>
-          {bentoBoxes.map((block, i) => (
-             <div key={i} style={{ gridColumn: isMobile ? '1 / -1' : `span ${block.col}` }}>
-               <div style={{
-                  height: block.height, background: block.bg, color: block.color, borderRadius: 20, padding: 32,
-                  display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-                  border: `1px solid ${T.ink}`, position: 'relative', overflow: 'hidden', cursor: 'pointer',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-               }}
-               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.15)`; }}
-               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
-                  {block.img && (
-                    <img src={block.img} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} alt="Background" />
-                  )}
-                  <div style={{ position: 'relative', zIndex: 2, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase' }}>{block.tag}</div>
-                  <div style={{ position: 'relative', zIndex: 2 }}>
-                    <h3 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 5vw, 48px)', margin: 0, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1 }}>{block.title}</h3>
-                    <div style={{ marginTop: 16, display: 'inline-flex', padding: '8px 16px', border: `1px solid ${block.color}55`, borderRadius: 999, fontSize: 12, fontWeight: 500 }}>View Case Study ↗</div>
-                  </div>
-               </div>
+      <React.Fragment>
+        {/* Bespoke Hero */}
+        <section style={{ position: 'relative', padding: isMobile ? '120px 20px 80px' : '180px 40px 120px', background: T.ink, color: T.paper, minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
+          {!isMobile && <SPStatusSticker T={T} F={F} top={80} right={120} rotate={8} variant="tape" tape={T.popB} bg={d.hero.color} icon="+" iconBg={T.ink} label="Service" name={data.name} zIndex={5} />}
+          {!isMobile && <SPStar size={100} color={T.popA} rotate={-15} bottom={80} left={80} zIndex={5} />}
+          <SPParallax speed={0.05}>
+            <h1 style={{ fontFamily: F.display, fontSize: 'clamp(50px, 8vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, maxWidth: 1200 }}>
+              {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span><br/>{d.hero.t2}
+            </h1>
+          </SPParallax>
+          <div style={{ marginTop: 60, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 40 }}>
+             <p style={{ fontSize: 'clamp(18px, 2vw, 24px)', lineHeight: 1.5, opacity: 0.8, margin: 0, maxWidth: 500 }}>
+               {d.hero.sub}
+             </p>
+             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+               <Link to="/contact" style={{ display: 'inline-flex', padding: '20px 40px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 12px 24px rgba(255,255,255,0.15)`; }}
+                 onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>{d.hero.cta}</Link>
              </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
+        
+        {/* Render Video Edits visual portfolio if needed */}
+        {slug === 'video-edits' && renderVideoEditsLayout()}
+
+        {/* What We Do */}
+        <section style={{ padding: isMobile ? '80px 20px' : '160px 40px', background: T.paper, color: T.ink }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 40 : 80 }}>
+            <div>
+              <div style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, borderTop: `1px solid ${T.ink}`, paddingTop: 16 }}>{d.wwd.t}</div>
+            </div>
+            <div>
+              <h2 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: 1.1, fontWeight: 500, margin: 0, letterSpacing: '-0.02em' }}>
+                <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>{d.wwd.sub}</span><br/><br/>
+                {d.wwd.text}
+              </h2>
+            </div>
+          </div>
+        </section>
+
+        {/* Deliverables */}
+        <section style={{ padding: isMobile ? '80px 20px' : '120px 40px', background: T.paper, color: T.ink, borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}` }}>
+          <SPSectionHead T={T} F={F} num="§ Output" title="The" titleIt={d.deliv.t + "."} dek="Everything you need." />
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: 16, marginTop: 40 }}>
+            {d.deliv.items.map((item, i) => (
+              <div key={i} style={{ gridColumn: isMobile ? '1 / -1' : `span ${item.span}`, padding: 24, background: item.c, borderRadius: 20, border: `1px solid ${T.ink}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 140, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 12px 24px rgba(0,0,0,0.1)`; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                <div style={{ marginBottom: 16, opacity: 0.8 }}>
+                  {React.createElement(item.i, { size: 28, strokeWidth: 1.5 })}
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, opacity: 0.5, fontFamily: F.italic, fontStyle: 'italic', marginBottom: 4 }}>0{i+1}</div>
+                  <h3 style={{ fontFamily: F.display, fontSize: 20, margin: 0, fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1 }}>{item.t}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Our Process */}
+        <section style={{ padding: isMobile ? '80px 20px' : '160px 40px', background: T.paper, color: T.ink }}>
+          <SPSectionHead T={T} F={F} num={`§ ${d.process.t}`} title="Our" titleIt={d.process.title} dek="How we do it." />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 40 }}>
+            {d.process.items.map((p, i) => (
+              <div key={i} style={{ background: p.c, borderRadius: 24, border: `1px solid ${T.ink}`, padding: isMobile ? '32px 24px' : '48px 40px', display: 'flex', alignItems: 'center', gap: isMobile ? 24 : 60, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.1)`; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                <div style={{ fontSize: 'clamp(40px, 6vw, 80px)', fontFamily: F.italic, fontStyle: 'italic', opacity: 0.3, lineHeight: 0.8 }}>
+                  0{i+1}
+                </div>
+                <h3 style={{ fontFamily: F.display, fontSize: 'clamp(28px, 4vw, 56px)', margin: 0, fontWeight: 700, letterSpacing: '-0.04em' }}>{p.t}</h3>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Results */}
+        <section style={{ padding: isMobile ? '80px 20px' : '160px 40px', background: T.ink, color: T.paper }}>
+          <div style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 60, textAlign: 'center' }}>
+            {d.results.t} <span style={{ fontFamily: F.italic, fontStyle: 'italic', textTransform: 'none', fontSize: 16 }}>& Outcomes</span>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : `repeat(${Math.min(4, d.results.items.length)}, 1fr)`, gap: 24, maxWidth: 1200, margin: '0 auto' }}>
+            {d.results.items.map((r, i) => (
+              <div key={i} style={{ 
+                padding: '32px 24px', 
+                background: 'rgba(255,255,255,0.03)', 
+                border: '1px solid rgba(255,255,255,0.08)', 
+                borderRadius: 20, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'space-between',
+                minHeight: 180,
+                transition: 'background 0.3s ease, transform 0.3s ease'
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                <div style={{ width: 40, height: 40, borderRadius: 20, background: r.c, color: T.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
+                  <Check size={20} strokeWidth={2} />
+                </div>
+                <h3 style={{ fontFamily: F.display, fontSize: 'clamp(20px, 2.5vw, 28px)', margin: 0, fontWeight: 500, lineHeight: 1.2, letterSpacing: '-0.01em', color: T.paper }}>
+                  {r.t}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </section>
+      </React.Fragment>
     );
   };
 
@@ -262,30 +413,16 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     <div style={{ background: T.paper, color: T.ink, fontFamily: F.body, minHeight: '100vh', overflowX: 'hidden' }}>
       <SPNav T={T} F={F} active="Services" />
       
-      {/* Hero section */}
-      <section style={{ padding: isMobile ? '60px 20px' : '120px 40px', background: data.bg, color: data.color, position: 'relative' }}>
-         {!isMobile && <SPStatusSticker T={T} F={F} top={40} right={80} rotate={8} variant="tape" tape={T.popB} bg={data.sticker} icon="+" iconBg={T.ink} label="Service" name={data.name} zIndex={5} />}
-         {!isMobile && <SPStar size={80} color={T.popA} rotate={-15} bottom={-20} left={80} zIndex={5} />}
-         
-         <div>
-           <div style={{ fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24, opacity: 0.7 }}>✳ Capability</div>
-           <h1 style={{ fontFamily: F.display, fontSize: 'clamp(50px, 12vw, 160px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0 }}>
-             {data.name}
-           </h1>
-           <p style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 'clamp(20px, 3vw, 28px)', marginTop: 32, opacity: 0.85, maxWidth: 640 }}>
-             {data.dek}
-           </p>
-         </div>
-      </section>
-
-      {/* Conditional Content Rendering */}
-      {slug === 'video-edits' ? renderVideoEditsLayout() : renderGenericLayout()}
+      {/* Bespoke Dynamic Layout */}
+      {renderBespokeLayout()}
       
       {/* Mini CTA */}
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px', background: T.popA, color: T.paper, textAlign: 'center' }}>
         <div>
           <h2 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 8vw, 100px)', margin: '0 0 32px' }}>Want this for your brand?</h2>
-          <Link to="/contact" style={{ display: 'inline-flex', padding: '16px 32px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', fontFamily: F.body }}>Start a project →</Link>
+          <Link to="/contact" style={{ display: 'inline-flex', padding: '16px 32px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', fontFamily: F.body, border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Start a project →</Link>
         </div>
       </section>
 

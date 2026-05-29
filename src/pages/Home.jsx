@@ -10,7 +10,7 @@ import { SP_THEMES, SP_TYPE } from '../theme/theme';
 function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   const T = SP_THEMES[themeKey];
   const F = SP_TYPE[typeKey];
-  
+
   const [mint, lilac, sky, butter, peach] = T.pastels;
   const isMobile = useIsMobile();
 
@@ -27,15 +27,15 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
   // Floating status stickers — varied rotation, tape, torn edges
   const statusStickers = isMobile ? [
-    { top: '10%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'sm' },
-    { top: '80%', right: '5%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'sm' },
+    { top: '10%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'sm', zIndex: 20 },
+    { top: '80%', right: '5%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'sm', zIndex: 20 },
   ] : [
-    { top: '5%', left: '8%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md' },
-    { top: '10%', right: '10%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md' },
-    { top: '45%', left: '2%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md' },
-    { top: '50%', right: '2%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md' },
-    { top: '80%', left: '20%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md' },
-    { top: '85%', right: '20%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md' }
+    { top: '5%', left: '8%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', zIndex: 20 },
+    { top: '10%', right: '10%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '45%', left: '2%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
+    { top: '50%', right: '2%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', zIndex: 20 },
+    { top: '80%', left: '20%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '85%', right: '20%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
   ];
 
 
@@ -120,8 +120,8 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
               textDecoration: 'none', display: 'block', cursor: 'pointer',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease'
             }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.1)`; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.1)`; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
               <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                   <span style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase' }}>{svc.n}</span>
@@ -149,8 +149,8 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
               color: w.dark ? T.paper : T.ink, border: `1px solid ${w.dark ? T.paper : T.ink}33`, fontFamily: F.body, cursor: 'pointer',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease'
             }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.15)`; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.15)`; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
               <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -191,9 +191,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
           {[why.slice(0, 3), why.slice(3)].map((col, ci) =>
             <div key={ci}>
               {col.map((w, i) =>
-                <div key={i} style={{ padding: '28px 16px', borderTop: `1px solid ${T.ink}`, fontFamily: F.body, transition: 'transform 0.3s ease, background 0.3s ease, border-radius 0.3s ease', cursor: 'pointer', margin: '0 -16px' }}
-                     onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.background = `${T.popA}11`; e.currentTarget.style.borderRadius = '16px'; }}
-                     onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderRadius = '0'; }}>
+                <div key={i} style={{ padding: '28px 16px', borderTop: `1px solid ${T.ink}`, fontFamily: F.body, margin: '0 -16px' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr', gap: 24 }}>
                     <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 36, color: T.popA }}>{w.n}.</span>
                     <div>
@@ -218,7 +216,9 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
             Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>make</span><br />something.
           </h2>
         </SPParallax>
-        <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: F.body, textDecoration: 'none', border: `1px solid ${T.ink}` }}>hello@blackspace.media →</Link>
+        <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: F.body, textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>hello@blackspace.media →</Link>
       </section>
 
       <SPFooter T={T} F={F} />

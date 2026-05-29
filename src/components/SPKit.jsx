@@ -63,7 +63,16 @@ export function SPNav({ T, F, active = 'Work' }) {
     ? { padding: '16px 20px', color: a ? T.popA : T.ink, fontWeight: 700, fontSize: 'clamp(28px, 8vw, 36px)', fontFamily: F.display, letterSpacing: '-0.02em', textDecoration: 'none', borderBottom: `1px solid ${T.ink}22` }
     : { padding: '8px 16px', borderRadius: 999, background: a ? T.paper : 'transparent', color: a ? T.ink : T.paper, fontWeight: 500, textDecoration: 'none' };
 
-  const cta = { background: T.popA, color: T.paper, padding: '10px 18px', borderRadius: 999, fontWeight: 500, fontSize: 13, border: `1px solid ${T.ink}`, textDecoration: 'none', display: isMobile ? 'none' : 'block' };
+  const cta = { background: T.popA, color: T.paper, padding: '10px 18px', borderRadius: 999, fontWeight: 500, fontSize: 13, border: `1px solid ${T.ink}`, textDecoration: 'none', display: isMobile ? 'none' : 'block', transition: 'transform 0.3s ease, box-shadow 0.3s ease' };
+
+  const handleCtaEnter = e => {
+    e.currentTarget.style.transform = 'translateY(-3px)';
+    e.currentTarget.style.boxShadow = `3px 4px 0 ${T.ink}`;
+  };
+  const handleCtaLeave = e => {
+    e.currentTarget.style.transform = 'translateY(0)';
+    e.currentTarget.style.boxShadow = 'none';
+  };
 
   return (
     <nav style={navStyle}>
@@ -79,10 +88,10 @@ export function SPNav({ T, F, active = 'Work' }) {
 
       <div style={pillWrap}>
         {items.map(it => <Link key={it} to={hrefs[it]} style={pill(active === it)} onClick={() => setMenuOpen(false)}>{it}</Link>)}
-        {isMobile && <Link to="/contact" style={{ ...cta, display: 'block', marginTop: 16, textAlign: 'center', fontSize: 16, padding: '16px', fontFamily: F.body }} onClick={() => setMenuOpen(false)}>Start a project →</Link>}
+        {isMobile && <Link to="/contact" style={{ ...cta, display: 'block', marginTop: 16, textAlign: 'center', fontSize: 16, padding: '16px', fontFamily: F.body }} onClick={() => setMenuOpen(false)} onMouseEnter={handleCtaEnter} onMouseLeave={handleCtaLeave}>Start a project →</Link>}
       </div>
 
-      {!isMobile && <Link to="/contact" style={cta}>Start a project →</Link>}
+      {!isMobile && <Link to="/contact" style={cta} onMouseEnter={handleCtaEnter} onMouseLeave={handleCtaLeave}>Start a project →</Link>}
     </nav>
   );
 }

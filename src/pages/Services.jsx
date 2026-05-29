@@ -100,7 +100,9 @@ function SPServices({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
             Prices are a starting point, not a ceiling. Good briefs get good prices.
           </p>
           <div style={{ textAlign:'right' }}>
-            <Link to="/contact" style={{ display:'inline-flex', gap:8, padding:'12px 22px', background:T.ink, color:T.paper, borderRadius:999, fontSize:13, fontWeight:500, textDecoration:'none' }}>Get a quote →</Link>
+            <Link to="/contact" style={{ display:'inline-flex', gap:8, padding:'12px 22px', background:T.ink, color:T.paper, borderRadius:999, fontSize:13, fontWeight:500, textDecoration:'none', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `3px 4px 0 ${T.ink}`; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Get a quote →</Link>
           </div>
         </div>
       </section>
@@ -222,7 +224,9 @@ function SPServices({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         <h2 style={{ fontFamily:F.display, fontSize:'clamp(60px, 14vw, 200px)', lineHeight:0.85, fontWeight:700, letterSpacing:'-0.05em', margin:0 }}>
           tell us about<br/><span style={{ fontFamily:F.italic, fontStyle:'italic', fontWeight:400, color:T.popA }}>your thing.</span>
         </h2>
-        <Link to="/contact" style={{ display:'inline-flex', gap:12, marginTop:40, padding:'22px 34px', background:T.ink, color:T.paper, borderRadius:999, fontSize:15, fontWeight:500, textDecoration:'none' }}>Start a project →</Link>
+        <Link to="/contact" style={{ display:'inline-flex', gap:12, marginTop:40, padding:'22px 34px', background:T.ink, color:T.paper, borderRadius:999, fontSize:15, fontWeight:500, textDecoration:'none', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Start a project →</Link>
       </section>
 
       <SPFooter T={T} F={F} />

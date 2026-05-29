@@ -1,12 +1,17 @@
-/* global React */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { useIsMobile } from '../hooks';
+import { SP_THEMES, SP_TYPE } from '../theme/theme';
+
 // JOURNAL page — blog / updates / notes
 
 function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
-  const T = window.SP_THEMES[themeKey];
-  const F = window.SP_TYPE[typeKey];
-  const { SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter } = window;
+  const T = SP_THEMES[themeKey];
+  const F = SP_TYPE[typeKey];
+  
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = window.useIsMobile();
+  const isMobile = useIsMobile();
 
   const entries = [
     {
@@ -78,17 +83,17 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.2fr 1fr', gap: isMobile ? 32 : 40, marginTop: isMobile ? 40 : 60, alignItems: 'start' }}>
-          <window.SPParallax speed={0.06}>
+          <SPParallax speed={0.06}>
             <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, opacity: 0.8 }}>A collection of notes on process, craft, and building things we actually want to see exist.</p>
-          </window.SPParallax>
-          <window.SPParallax speed={0.04}>
+          </SPParallax>
+          <SPParallax speed={0.04}>
             <p style={{ margin: 0, fontFamily: F.italic, fontStyle: 'italic', fontSize: 22, lineHeight: 1.35, textAlign: 'center' }}>
               We write when we have something to say. Not when an algorithm asks us to.
             </p>
-          </window.SPParallax>
-          <window.SPParallax speed={0.08} style={{ textAlign: 'center' }}>
-            <a href="contact.html" style={{ display: 'inline-flex', gap: 8, padding: '12px 22px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>Subscribe →</a>
-          </window.SPParallax>
+          </SPParallax>
+          <SPParallax speed={0.08} style={{ textAlign: 'center' }}>
+            <Link to="/contact" style={{ display: 'inline-flex', gap: 8, padding: '12px 22px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>Subscribe →</Link>
+          </SPParallax>
         </div>
       </section>
 
@@ -137,7 +142,7 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         <h2 style={{ fontFamily: F.display, fontSize: 'clamp(60px, 14vw, 200px)', lineHeight: 0.85, fontWeight: 700, letterSpacing: '-0.05em', margin: 0 }}>
           read <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>enough?</span>
         </h2>
-        <a href="contact.html" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>Start a project →</a>
+        <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>Start a project →</Link>
       </section>
 
       <SPFooter T={T} F={F} />
@@ -145,4 +150,4 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   );
 }
 
-window.SPJournal = SPJournal;
+export default SPJournal;

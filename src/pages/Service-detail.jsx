@@ -1,11 +1,16 @@
-/* global React */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { useIsMobile } from '../hooks';
+import { SP_THEMES, SP_TYPE } from '../theme/theme';
 
-window.SPServiceDetail = function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
-  const T = window.SP_THEMES[themeKey];
-  const F = window.SP_TYPE[typeKey];
-  const { SPNav, SPSectionHead, SPFooter, SPStar, SPStatusSticker } = window;
+
+export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
+  const T = SP_THEMES[themeKey];
+  const F = SP_TYPE[typeKey];
+  
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = window.useIsMobile();
+  const isMobile = useIsMobile();
   
   // Read query params safely
   const [slug, setSlug] = React.useState('video-edits');
@@ -280,7 +285,7 @@ window.SPServiceDetail = function SPServiceDetail({ themeKey = 'classic', typeKe
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px', background: T.popA, color: T.paper, textAlign: 'center' }}>
         <div>
           <h2 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 8vw, 100px)', margin: '0 0 32px' }}>Want this for your brand?</h2>
-          <a href="contact.html" style={{ display: 'inline-flex', padding: '16px 32px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', fontFamily: F.body }}>Start a project →</a>
+          <Link to="/contact" style={{ display: 'inline-flex', padding: '16px 32px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', fontFamily: F.body }}>Start a project →</Link>
         </div>
       </section>
 

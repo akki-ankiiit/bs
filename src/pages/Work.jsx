@@ -1,12 +1,17 @@
-/* global React */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { useIsMobile } from '../hooks';
+import { SP_THEMES, SP_TYPE } from '../theme/theme';
+
 // WORK page — project index with bento + list + filters
 
 function SPWork({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
-  const T = window.SP_THEMES[themeKey];
-  const F = window.SP_TYPE[typeKey];
-  const { SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter } = window;
+  const T = SP_THEMES[themeKey];
+  const F = SP_TYPE[typeKey];
+  
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = window.useIsMobile();
+  const isMobile = useIsMobile();
 
   const projects = [
     { col:8, row:3, bg:`radial-gradient(ellipse at 30% 40%, #8a4820 0%, #1a0e08 80%)`, chip:'CAMPAIGN · FILM', title:'Okinawa — The 5AM Film', client:'Okinawa Fitness', year:'2025', result:'2.1M views / 14k DMs', dark:true, big:true },
@@ -77,7 +82,7 @@ function SPWork({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       <section style={{ padding: isMobile ? '20px 20px 60px' : '20px 40px 80px' }}>
         <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile ? 'auto' : 140, gap:14 }}>
           {projects.map((p,i)=>(
-            <a key={i} href="#" style={{
+            <Link key={i} to="#" style={{
               gridColumn: isMobile ? '1 / -1' : `span ${p.col}`, gridRow: isMobile ? 'auto' : `span ${p.row}`, background:p.bg,
               minHeight: isMobile ? 240 : 'auto',
               borderRadius:20, position:'relative', overflow:'hidden', padding:24,
@@ -104,7 +109,7 @@ function SPWork({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
                   <span>{p.result}</span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -161,7 +166,7 @@ function SPWork({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         <h2 style={{ fontFamily:F.display, fontSize:'clamp(60px, 14vw, 200px)', lineHeight:0.85, fontWeight:700, letterSpacing:'-0.05em', margin:0 }}>
           your <span style={{ fontFamily:F.italic, fontStyle:'italic', fontWeight:400 }}>project</span><br/>could <span style={{ color:T.popA }}>live here.</span>
         </h2>
-        <a href="contact.html" style={{ display:'inline-flex', gap:12, marginTop:40, padding:'22px 34px', background:T.ink, color:T.paper, borderRadius:999, fontSize:15, fontWeight:500, textDecoration:'none' }}>Start a project →</a>
+        <Link to="/contact" style={{ display:'inline-flex', gap:12, marginTop:40, padding:'22px 34px', background:T.ink, color:T.paper, borderRadius:999, fontSize:15, fontWeight:500, textDecoration:'none' }}>Start a project →</Link>
       </section>
 
       <SPFooter T={T} F={F} />
@@ -169,4 +174,4 @@ function SPWork({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   );
 }
 
-window.SPWork = SPWork;
+export default SPWork;

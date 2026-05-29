@@ -1,12 +1,17 @@
-/* global React */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { useIsMobile } from '../hooks';
+import { SP_THEMES, SP_TYPE } from '../theme/theme';
+
 // CONTACT page — form + "what happens next" + team on-call
 
 function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
-  const T = window.SP_THEMES[themeKey];
-  const F = window.SP_TYPE[typeKey];
-  const { SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter } = window;
+  const T = SP_THEMES[themeKey];
+  const F = SP_TYPE[typeKey];
+  
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = window.useIsMobile();
+  const isMobile = useIsMobile();
 
   const services = ['Content Campaign', 'Scripts', 'Video Edits', 'AI Workflows', 'Brand Identity', 'Website', 'Social', 'Not sure yet'];
   const budgets = ['< ₹2L', '₹2–5L', '₹5–12L', '₹12L+', 'Retainer'];
@@ -15,6 +20,7 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
     background: T.paper, border: `1px solid ${T.ink}`, borderRadius: 12,
     padding: '16px 18px', fontSize: 15, width: '100%',
     fontFamily: F.body, color: T.ink, outline: 'none',
+    boxSizing: 'border-box',
   };
   const label = { fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 8, display: 'block' };
 
@@ -48,17 +54,17 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
           <h1 style={{ fontFamily: F.display, fontSize: isMobile ? '80px' : 'clamp(140px, 18vw, 260px)', lineHeight: 0.84, fontWeight: 700, letterSpacing: '-0.05em', margin: 0, textAlign: 'center' }}>
             say the <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>thing.</span>
           </h1>
-          <window.SPParallax speed={0.04}>
+          <SPParallax speed={0.04}>
             <p style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 22, textAlign: 'center', maxWidth: 640, margin: '24px auto 0', opacity: 0.85, paddingTop: 40 }}>
               Shortest path: fill this in. Longer path: email us. Longest: LinkedIn (we check on Fridays).
             </p>
-          </window.SPParallax>
+          </SPParallax>
         </div>
       </section>
 
       {/* Form + side */}
       <section style={{ padding: isMobile ? '40px 20px' : '60px 40px 80px' }}>
-        <div style={{ display: 'block', gridTemplateColumns: isMobile ? '1fr' : '1.4fr 1fr', gap: isMobile ? 32 : 40 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.4fr 1fr', gap: isMobile ? 32 : 40 }}>
 
           {/* Form */}
           <div style={{
@@ -69,9 +75,8 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
           }}
           onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = `8px 12px 0 ${T.ink}`; }}
           onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `6px 6px 0 ${T.ink}`; }}>
-            <window.SPParallax speed={0.02}>
             <div style={{
-              position: 'absolute', top: -18, left: 40,
+              position: 'absolute', top: -16, left: 40, zIndex: 10,
               background: T.popA, color: T.paper, padding: '8px 18px', borderRadius: 999,
               fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600,
               border: `1px solid ${T.ink}`, transform: 'rotate(-3deg)',
@@ -133,7 +138,6 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
                 boxShadow: `3px 3px 0 ${T.ink}`,
               }}>Send brief →</button>
             </div>
-            </window.SPParallax>
           </div>
 
           {/* Side */}
@@ -153,9 +157,9 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
             <div style={{ background: butter, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24 }}>
               <div style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 10 }}>Other frequencies</div>
               <div style={{ display: 'grid', gap: 8, fontSize: 14 }}>
-                <a href="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Instagram</span><span>@blackspace.media ↗</span></a>
-                <a href="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>LinkedIn</span><span>/blackspace-media ↗</span></a>
-                <a href="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Vimeo</span><span>/blackspace ↗</span></a>
+                <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Instagram</span><span>@blackspace.media ↗</span></Link>
+                <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>LinkedIn</span><span>/blackspace-media ↗</span></Link>
+                <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Vimeo</span><span>/blackspace ↗</span></Link>
               </div>
             </div>
 
@@ -194,4 +198,4 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   );
 }
 
-window.SPContact = SPContact;
+export default SPContact;

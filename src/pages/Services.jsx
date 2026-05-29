@@ -1,12 +1,17 @@
-/* global React */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { useIsMobile } from '../hooks';
+import { SP_THEMES, SP_TYPE } from '../theme/theme';
+
 // SERVICES page — menu + process + pricing-ish
 
 function SPServices({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
-  const T = window.SP_THEMES[themeKey];
-  const F = window.SP_TYPE[typeKey];
-  const { SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter } = window;
+  const T = SP_THEMES[themeKey];
+  const F = SP_TYPE[typeKey];
+  
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = window.useIsMobile();
+  const isMobile = useIsMobile();
 
   const menu = [
     {
@@ -95,7 +100,7 @@ function SPServices({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
             Prices are a starting point, not a ceiling. Good briefs get good prices.
           </p>
           <div style={{ textAlign:'right' }}>
-            <a href="contact.html" style={{ display:'inline-flex', gap:8, padding:'12px 22px', background:T.ink, color:T.paper, borderRadius:999, fontSize:13, fontWeight:500, textDecoration:'none' }}>Get a quote →</a>
+            <Link to="/contact" style={{ display:'inline-flex', gap:8, padding:'12px 22px', background:T.ink, color:T.paper, borderRadius:999, fontSize:13, fontWeight:500, textDecoration:'none' }}>Get a quote →</Link>
           </div>
         </div>
       </section>
@@ -217,7 +222,7 @@ function SPServices({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         <h2 style={{ fontFamily:F.display, fontSize:'clamp(60px, 14vw, 200px)', lineHeight:0.85, fontWeight:700, letterSpacing:'-0.05em', margin:0 }}>
           tell us about<br/><span style={{ fontFamily:F.italic, fontStyle:'italic', fontWeight:400, color:T.popA }}>your thing.</span>
         </h2>
-        <a href="contact.html" style={{ display:'inline-flex', gap:12, marginTop:40, padding:'22px 34px', background:T.ink, color:T.paper, borderRadius:999, fontSize:15, fontWeight:500, textDecoration:'none' }}>Start a project →</a>
+        <Link to="/contact" style={{ display:'inline-flex', gap:12, marginTop:40, padding:'22px 34px', background:T.ink, color:T.paper, borderRadius:999, fontSize:15, fontWeight:500, textDecoration:'none' }}>Start a project →</Link>
       </section>
 
       <SPFooter T={T} F={F} />
@@ -225,4 +230,4 @@ function SPServices({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   );
 }
 
-window.SPServices = SPServices;
+export default SPServices;

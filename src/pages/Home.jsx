@@ -1,13 +1,18 @@
-/* global React */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { useIsMobile } from '../hooks';
+import { SP_THEMES, SP_TYPE } from '../theme/theme';
+
 // HOME page — sticker pop, refined with handmade stickers, fun statuses, Acid TM
-// Uses window.SP_THEMES, SP_TYPE, SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter
+// Uses SP_THEMES, SP_TYPE, SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter
 
 function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
-  const T = window.SP_THEMES[themeKey];
-  const F = window.SP_TYPE[typeKey];
-  const { SPNav, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPFooter } = window;
+  const T = SP_THEMES[themeKey];
+  const F = SP_TYPE[typeKey];
+  
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = window.useIsMobile();
+  const isMobile = useIsMobile();
 
   const root = { width: '100%', minHeight: 2400, background: T.paper, color: T.ink, fontFamily: F.body, position: 'relative' };
 
@@ -85,19 +90,19 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         </div>
 
         <div style={heroBottom}>
-          <window.SPParallax speed={0.04} style={{ ...heroDek, order: isMobile ? 1 : 2, flex: 1, maxWidth: isMobile ? '100%' : 400 }}>
+          <SPParallax speed={0.04} style={{ ...heroDek, order: isMobile ? 1 : 2, flex: 1, maxWidth: isMobile ? '100%' : 400 }}>
             <em>We write, shoot, cut & <span style={{ color: T.popA }}>occasionally go viral.</span></em>
-          </window.SPParallax>
+          </SPParallax>
 
-          <window.SPParallax speed={0.08} style={{ ...heroBlock, order: isMobile ? 2 : 1, textAlign: isMobile ? 'center' : 'left', flex: 1 }}>
+          <SPParallax speed={0.08} style={{ ...heroBlock, order: isMobile ? 2 : 1, textAlign: isMobile ? 'center' : 'left', flex: 1 }}>
             <div style={heroBlockHead}>↳ What we are</div>
             <p style={{ margin: 0 }}>A creative studio making content campaigns, scripts, edits, and brand work — with AI quietly doing the laundry in the back.</p>
-          </window.SPParallax>
+          </SPParallax>
 
-          <window.SPParallax speed={0.06} style={{ ...heroBlock, order: 3, textAlign: isMobile ? 'center' : 'right', flex: 1 }}>
+          <SPParallax speed={0.06} style={{ ...heroBlock, order: 3, textAlign: isMobile ? 'center' : 'right', flex: 1 }}>
             <div style={heroBlockHead}>(2) Discover ↓</div>
             <p style={{ margin: 0 }}>Scripts → Shoots → Edits → AI → Posts → Repeat. Seven days a week, minus the occasional Sunday.</p>
-          </window.SPParallax>
+          </SPParallax>
         </div>
       </section>
 
@@ -108,7 +113,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         <SPSectionHead T={T} F={F} num="§ 01 / Services" title="The menu," titleIt="in pastel." dek="Six things. Done fully, not partially." />
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile ? 'auto' : 220, gap: 16 }}>
           {services.map((svc, i) =>
-            <a key={i} href={`service-detail.html?id=${svc.slug}`} style={{
+            <Link key={i} to={`/service-detail?id=${svc.slug}`} style={{
               gridColumn: isMobile ? '1 / -1' : `span ${svc.col}`, gridRow: isMobile ? 'auto' : `span ${svc.row}`,
               background: svc.bg, border: `1px solid ${T.ink}`, borderRadius: 20,
               padding: 28, position: 'relative', overflow: 'hidden', color: svc.dark ? T.paper : T.ink, fontFamily: F.body,
@@ -127,7 +132,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
                   <p style={{ fontSize: 14, lineHeight: 1.55, marginTop: 12, maxWidth: 320, opacity: 0.85, color: svc.dark ? T.paper : T.ink }}>{svc.body}</p>
                 </div>
               </div>
-            </a>
+            </Link>
           )}
         </div>
       </section>
@@ -208,12 +213,12 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
         <SPStar size={120} color={T.popB} rotate={15} top={40} right={isMobile ? -20 : 60} />
         <SPStar size={90} color={T.popA} rotate={-20} bottom={isMobile ? 20 : 120} left={isMobile ? -20 : 60} />
         <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, fontFamily: F.body, marginBottom: 24 }}>§ 04 / Let's talk</div>
-        <window.SPParallax speed={0.06}>
+        <SPParallax speed={0.06}>
           <h2 style={{ fontFamily: F.display, fontSize: 'clamp(60px, 15vw, 240px)', lineHeight: 0.85, fontWeight: 700, letterSpacing: '-0.06em', margin: 0, color: T.ink }}>
             Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>make</span><br />something.
           </h2>
-        </window.SPParallax>
-        <a href="contact.html" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: F.body, textDecoration: 'none', border: `1px solid ${T.ink}` }}>hello@blackspace.media →</a>
+        </SPParallax>
+        <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: F.body, textDecoration: 'none', border: `1px solid ${T.ink}` }}>hello@blackspace.media →</Link>
       </section>
 
       <SPFooter T={T} F={F} />
@@ -221,4 +226,4 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
 }
 
-window.SPHome = SPHome;
+export default SPHome;

@@ -60,6 +60,9 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     { title: 'Desert Wind', vid: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_5MB.mp4', poster: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&q=80&w=1000' },
     { title: 'Neon Nights', vid: 'https://vjs.zencdn.net/v/oceans.mp4', poster: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=1000' },
     { title: 'Quiet Morning', vid: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4', poster: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'Golden Hour', vid: 'https://vjs.zencdn.net/v/oceans.mp4', poster: 'https://images.unsplash.com/photo-1506744626753-143d60235882?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'Night Drive', vid: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4', poster: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=1000' },
+    { title: 'City Lights', vid: 'https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_5MB.mp4', poster: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1000' },
   ];
   const [activeIdx, setActiveIdx] = React.useState(5);
   const videoRefs = React.useRef([]);
@@ -101,25 +104,27 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
 
           {/* Left Button */}
           <button
-            onClick={() => setActiveIdx(Math.max(0, activeIdx - 1))}
-            disabled={activeIdx === 0}
-            style={{ position: 'absolute', left: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: activeIdx === 0 ? 'default' : 'pointer', opacity: activeIdx === 0 ? 0 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18, pointerEvents: activeIdx === 0 ? 'none' : 'auto' }}
+            onClick={() => setActiveIdx((activeIdx - 1 + carouselItems.length) % carouselItems.length)}
+            style={{ position: 'absolute', left: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18 }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
           >←</button>
 
           {/* Right Button */}
           <button
-            onClick={() => setActiveIdx(Math.min(carouselItems.length - 1, activeIdx + 1))}
-            disabled={activeIdx === carouselItems.length - 1}
-            style={{ position: 'absolute', right: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: activeIdx === carouselItems.length - 1 ? 'default' : 'pointer', opacity: activeIdx === carouselItems.length - 1 ? 0 : 1, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18, pointerEvents: activeIdx === carouselItems.length - 1 ? 'none' : 'auto' }}
+            onClick={() => setActiveIdx((activeIdx + 1) % carouselItems.length)}
+            style={{ position: 'absolute', right: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18 }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
           >→</button>
 
           {carouselItems.map((item, i) => {
-            const offset = i - activeIdx;
-            const isActive = i === activeIdx;
+            let offset = i - activeIdx;
+            const half = Math.floor(carouselItems.length / 2);
+            if (offset > half) offset -= carouselItems.length;
+            if (offset < -half) offset += carouselItems.length;
+            
+            const isActive = offset === 0;
             const distance = Math.abs(offset);
 
             const scale = isActive ? 1 : 1 - (distance * 0.15);

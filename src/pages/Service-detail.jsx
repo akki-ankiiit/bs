@@ -153,7 +153,6 @@ const SCOPE_GALLERY_DATA = {
     masonry: ["https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600"]
   }
 };
-};
 
 const ScopeDetailModal = ({ title, onClose, T, F, isMobile }) => {
   const data = SCOPE_GALLERY_DATA[title] || SCOPE_GALLERY_DATA["default"];
@@ -564,7 +563,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
           )}
           <SPParallax speed={0.05}>
             <h1 style={{ fontFamily: F.display, fontSize: 'clamp(50px, 8vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, maxWidth: 1200 }}>
-              {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span><br />{d.hero.t2}
+              {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span>{d.hero.t2 && <><br />{d.hero.t2}</>}
             </h1>
           </SPParallax>
           <div style={{ marginTop: 60, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 40 }}>

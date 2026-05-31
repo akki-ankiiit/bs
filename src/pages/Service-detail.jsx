@@ -7,7 +7,6 @@ import { Target, Calendar, Lightbulb, Map, Rocket, Megaphone, Sprout, BarChart, 
 
 const SCOPE_GALLERY_DATA = {
   "Websites": {
-    desc: "Lightning-fast, high-converting digital storefronts tailored for your brand.",
     mockups: [
       "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1547658719-da2b51159128?auto=format&fit=crop&q=80&w=1200"
@@ -28,7 +27,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Landing Pages": {
-    desc: "Targeted, hyper-optimized single pages designed to maximize conversion rates.",
     mockups: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=1200"
@@ -45,7 +43,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Portfolio Sites": {
-    desc: "Beautifully editorial grids showcasing your best creative work to the world.",
     mockups: [
       "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=1200"
@@ -62,7 +59,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Profile Design": {
-    desc: "Polished avatars, banners, and biographies that establish instant authority.",
     mockups: [
       "https://images.unsplash.com/photo-1513002749550-c59d220b8e42?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200"
@@ -79,7 +75,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Social Branding": {
-    desc: "Cohesive aesthetic systems, templates, and guidelines for your social channels.",
     mockups: [
       "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=1200"
@@ -96,7 +91,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Content Templates": {
-    desc: "Reusable, dynamic frameworks for rapid and on-brand content production.",
     mockups: [
       "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1200"
@@ -113,7 +107,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Conversion Design": {
-    desc: "Data-driven UI/UX decisions focused purely on turning visitors into customers.",
     mockups: [
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
@@ -130,7 +123,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "Responsive Dev": {
-    desc: "Flawless code execution ensuring your designs look perfect on any device size.",
     mockups: [
       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200"
@@ -147,7 +139,6 @@ const SCOPE_GALLERY_DATA = {
     ]
   },
   "default": {
-    desc: "Detailed breakdowns and mockups of our bespoke creative deliverables.",
     mockups: ["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200"],
     carousel: ["https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800"],
     masonry: ["https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600"]
@@ -156,7 +147,7 @@ const SCOPE_GALLERY_DATA = {
 
 const ScopeDetailModal = ({ title, onClose, T, F, isMobile }) => {
   const data = SCOPE_GALLERY_DATA[title] || SCOPE_GALLERY_DATA["default"];
-  
+
   React.useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'auto'; };
@@ -165,27 +156,17 @@ const ScopeDetailModal = ({ title, onClose, T, F, isMobile }) => {
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: T.ink, color: T.paper, zIndex: 9999, overflowY: 'auto', overflowX: 'hidden' }}>
       {/* Header */}
-      <div style={{ position: 'sticky', top: 0, padding: isMobile ? '20px' : '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', background: `rgba(0,0,0,0.8)`, backdropFilter: 'blur(10px)', zIndex: 10, borderBottom: `1px solid rgba(255,255,255,0.1)` }}>
-        <div style={{ maxWidth: 800 }}>
-          <h2 style={{ fontFamily: F.display, fontSize: isMobile ? 32 : 56, margin: 0, letterSpacing: '-0.02em', lineHeight: 1 }}>{title}.</h2>
-          <p style={{ marginTop: 12, marginBottom: 0, fontSize: isMobile ? 16 : 20, opacity: 0.7, lineHeight: 1.4, fontFamily: F.display }}>
-            <span style={{ fontFamily: F.italic, fontStyle: 'italic', opacity: 1, marginRight: 6 }}>{data.desc.split(' ')[0]}</span>
-            {data.desc.split(' ').slice(1).join(' ')}
-          </p>
-        </div>
-        <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: T.paper, borderRadius: '50%', cursor: 'pointer', padding: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease' }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'scale(1.1)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'scale(1)'; }}>
-          <X size={24} />
+      <div style={{ position: 'sticky', top: 0, padding: isMobile ? '20px' : '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: `rgba(0,0,0,0.8)`, backdropFilter: 'blur(10px)', zIndex: 10 }}>
+        <h2 style={{ fontFamily: F.display, fontSize: isMobile ? 24 : 40, margin: 0, letterSpacing: '-0.02em' }}>{title}.</h2>
+        <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: T.paper, cursor: 'pointer', padding: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <X size={32} />
         </button>
       </div>
 
       <div style={{ padding: isMobile ? '40px 20px' : '80px 40px', maxWidth: 1400, margin: '0 auto' }}>
         {/* Mockups */}
         <div style={{ marginBottom: 80 }}>
-          <h3 style={{ fontFamily: F.display, fontSize: 32, marginBottom: 32, letterSpacing: '-0.02em' }}>
-            <span style={{ fontFamily: F.italic, fontStyle: 'italic', opacity: 0.6, marginRight: 8 }}>Featured</span>Mockups
-          </h3>
+          <h3 style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 24, marginBottom: 24, opacity: 0.6 }}>Featured Mockups</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
             {data.mockups.map((src, i) => (
               <img key={i} src={src} alt={`${title} mockup ${i}`} style={{ width: '100%', height: isMobile ? 300 : 600, objectFit: 'cover', borderRadius: 24, border: `1px solid rgba(255,255,255,0.1)` }} />
@@ -195,9 +176,7 @@ const ScopeDetailModal = ({ title, onClose, T, F, isMobile }) => {
 
         {/* Carousel */}
         <div style={{ marginBottom: 80 }}>
-          <h3 style={{ fontFamily: F.display, fontSize: 32, marginBottom: 32, letterSpacing: '-0.02em' }}>
-            <span style={{ fontFamily: F.italic, fontStyle: 'italic', opacity: 0.6, marginRight: 8 }}>Detailed</span>Gallery
-          </h3>
+          <h3 style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 24, marginBottom: 24, opacity: 0.6 }}>Gallery</h3>
           <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 20, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
             {data.carousel.map((src, i) => (
               <img key={i} src={src} alt={`${title} gallery ${i}`} style={{ height: isMobile ? 240 : 400, minWidth: isMobile ? 300 : 600, objectFit: 'cover', borderRadius: 16, scrollSnapAlign: 'start', border: `1px solid rgba(255,255,255,0.1)` }} />
@@ -207,9 +186,7 @@ const ScopeDetailModal = ({ title, onClose, T, F, isMobile }) => {
 
         {/* Masonry */}
         <div>
-          <h3 style={{ fontFamily: F.display, fontSize: 32, marginBottom: 32, letterSpacing: '-0.02em' }}>
-            <span style={{ fontFamily: F.italic, fontStyle: 'italic', opacity: 0.6, marginRight: 8 }}>Additional</span>Assets
-          </h3>
+          <h3 style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 24, marginBottom: 24, opacity: 0.6 }}>Details & Assets</h3>
           <div style={{ columnCount: isMobile ? 1 : 3, columnGap: 24 }}>
             {data.masonry.map((src, i) => (
               <img key={i} src={src} alt={`${title} detail ${i}`} style={{ width: '100%', breakInside: 'avoid', marginBottom: 24, borderRadius: 16, border: `1px solid rgba(255,255,255,0.1)` }} />
@@ -340,7 +317,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
             const half = Math.floor(carouselItems.length / 2);
             if (offset > half) offset -= carouselItems.length;
             if (offset < -half) offset += carouselItems.length;
-            
+
             const isActive = offset === 0;
             const distance = Math.abs(offset);
 
@@ -563,7 +540,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
           )}
           <SPParallax speed={0.05}>
             <h1 style={{ fontFamily: F.display, fontSize: 'clamp(50px, 8vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, maxWidth: 1200 }}>
-              {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span>{d.hero.t2 && <><br />{d.hero.t2}</>}
+              {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span><br />{d.hero.t2}
             </h1>
           </SPParallax>
           <div style={{ marginTop: 60, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 40 }}>

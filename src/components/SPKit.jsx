@@ -224,14 +224,14 @@ export function SPSectionHead({ T, F, num, title, titleIt, dek, color }) {
   const isMobile = useIsMobile();
   const c = color || 'inherit';
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '140px 1fr 300px', gap: isMobile ? 16 : 40, alignItems: isMobile ? 'flex-start' : 'baseline', marginBottom: isMobile ? 40 : 60 }}>
-      <span style={{ fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: F.body, color: c }}>{num}</span>
-      <SPParallax speed={0.06}>
+    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '140px 1fr 300px', gap: isMobile ? 16 : 40, alignItems: 'flex-start', marginBottom: isMobile ? 40 : 100 }}>
+      <span style={{ fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: F.body, color: c, marginTop: isMobile ? 0 : 24 }}>{num}</span>
+      <SPParallax speed={0.04}>
         <h2 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 12vw, 96px)', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 0.94, margin: 0, color: c }}>
           {title} {titleIt && <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>{titleIt}</span>}
         </h2>
       </SPParallax>
-      <p style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 18, margin: 0, opacity: 0.8, color: c, textAlign: isMobile ? 'left' : 'right', maxWidth: isMobile ? '100%' : 280 }}>{dek}</p>
+      <p style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 18, margin: 0, opacity: 0.8, color: c, textAlign: isMobile ? 'left' : 'right', maxWidth: isMobile ? '100%' : 280, marginTop: isMobile ? 0 : 24 }}>{dek}</p>
     </div>
   );
 }

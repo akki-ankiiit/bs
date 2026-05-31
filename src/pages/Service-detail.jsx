@@ -3,7 +3,200 @@ import { Link } from 'react-router-dom';
 import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
 import { useIsMobile } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
-import { Target, Calendar, Lightbulb, Map, Rocket, Megaphone, Sprout, BarChart, Smartphone, Play, Mic, User, Tv, BookOpen, Sparkles, PenTool, Music, Image as ImageIcon, Bot, TrendingUp, RefreshCw, Search, Brain, Settings, FileText, CheckCircle, Monitor, Globe, UserSquare, MousePointerClick, Check } from 'lucide-react';
+import { Target, Calendar, Lightbulb, Map, Rocket, Megaphone, Sprout, BarChart, Smartphone, Play, Mic, User, Tv, BookOpen, Sparkles, PenTool, Music, Image as ImageIcon, Bot, TrendingUp, RefreshCw, Search, Brain, Settings, FileText, CheckCircle, Monitor, Globe, UserSquare, MousePointerClick, Check, X } from 'lucide-react';
+
+const SCOPE_GALLERY_DATA = {
+  "Websites": {
+    mockups: [
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1547658719-da2b51159128?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1481481600450-84ea51936bb4?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Landing Pages": {
+    mockups: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Portfolio Sites": {
+    mockups: [
+      "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Profile Design": {
+    mockups: [
+      "https://images.unsplash.com/photo-1513002749550-c59d220b8e42?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Social Branding": {
+    mockups: [
+      "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1616469829935-c8f50d9ae365?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Content Templates": {
+    mockups: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Conversion Design": {
+    mockups: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1547658719-da2b51159128?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "Responsive Dev": {
+    mockups: [
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200"
+    ],
+    carousel: [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&q=80&w=800"
+    ],
+    masonry: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600"
+    ]
+  },
+  "default": {
+    mockups: ["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200"],
+    carousel: ["https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800"],
+    masonry: ["https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=600"]
+  }
+};
+
+const ScopeDetailModal = ({ title, onClose, T, F, isMobile }) => {
+  const data = SCOPE_GALLERY_DATA[title] || SCOPE_GALLERY_DATA["default"];
+  
+  React.useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = 'auto'; };
+  }, []);
+
+  return (
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: T.ink, color: T.paper, zIndex: 9999, overflowY: 'auto', overflowX: 'hidden' }}>
+      {/* Header */}
+      <div style={{ position: 'sticky', top: 0, padding: isMobile ? '20px' : '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: `rgba(0,0,0,0.8)`, backdropFilter: 'blur(10px)', zIndex: 10 }}>
+        <h2 style={{ fontFamily: F.display, fontSize: isMobile ? 24 : 40, margin: 0, letterSpacing: '-0.02em' }}>{title}.</h2>
+        <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: T.paper, cursor: 'pointer', padding: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <X size={32} />
+        </button>
+      </div>
+
+      <div style={{ padding: isMobile ? '40px 20px' : '80px 40px', maxWidth: 1400, margin: '0 auto' }}>
+        {/* Mockups */}
+        <div style={{ marginBottom: 80 }}>
+          <h3 style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 24, marginBottom: 24, opacity: 0.6 }}>Featured Mockups</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+            {data.mockups.map((src, i) => (
+              <img key={i} src={src} alt={`${title} mockup ${i}`} style={{ width: '100%', height: isMobile ? 300 : 600, objectFit: 'cover', borderRadius: 24, border: `1px solid rgba(255,255,255,0.1)` }} />
+            ))}
+          </div>
+        </div>
+
+        {/* Carousel */}
+        <div style={{ marginBottom: 80 }}>
+          <h3 style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 24, marginBottom: 24, opacity: 0.6 }}>Gallery</h3>
+          <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 20, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
+            {data.carousel.map((src, i) => (
+              <img key={i} src={src} alt={`${title} gallery ${i}`} style={{ height: isMobile ? 240 : 400, minWidth: isMobile ? 300 : 600, objectFit: 'cover', borderRadius: 16, scrollSnapAlign: 'start', border: `1px solid rgba(255,255,255,0.1)` }} />
+            ))}
+          </div>
+        </div>
+
+        {/* Masonry */}
+        <div>
+          <h3 style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 24, marginBottom: 24, opacity: 0.6 }}>Details & Assets</h3>
+          <div style={{ columnCount: isMobile ? 1 : 3, columnGap: 24 }}>
+            {data.masonry.map((src, i) => (
+              <img key={i} src={src} alt={`${title} detail ${i}`} style={{ width: '100%', breakInside: 'avoid', marginBottom: 24, borderRadius: 16, border: `1px solid rgba(255,255,255,0.1)` }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 
 export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
@@ -15,6 +208,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
 
   // Read query params safely
   const [slug, setSlug] = React.useState('video-edits');
+  const [activeScopeItem, setActiveScopeItem] = React.useState(null);
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -384,7 +578,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
           <SPSectionHead T={T} F={F} num="§ Output" title="The" titleIt={d.deliv.t + "."} dek="Everything you need." />
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: 16, marginTop: 40 }}>
             {d.deliv.items.map((item, i) => (
-              <div key={i} style={{ gridColumn: isMobile ? '1 / -1' : `span ${item.span}`, padding: 24, background: item.c, borderRadius: 20, border: `1px solid ${T.ink}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 140, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+              <div key={i} onClick={() => setActiveScopeItem(item.t)} style={{ cursor: 'pointer', gridColumn: isMobile ? '1 / -1' : `span ${item.span}`, padding: 24, background: item.c, borderRadius: 20, border: `1px solid ${T.ink}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 140, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 12px 24px rgba(0,0,0,0.1)`; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
                 <div style={{ marginBottom: 16, opacity: 0.8 }}>
@@ -457,6 +651,10 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
             })}
           </div>
         </section>
+
+        {activeScopeItem && (
+          <ScopeDetailModal title={activeScopeItem} onClose={() => setActiveScopeItem(null)} T={T} F={F} isMobile={isMobile} />
+        )}
       </React.Fragment>
     );
   };

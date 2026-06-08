@@ -22,7 +22,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     'content-campaigns': { name: 'Content Campaigns', bg: T.paper, color: T.ink, dek: 'End-to-end. Concept, script, shoot, cut, post. One team, no handoffs, no blame.', sticker: mint },
     'scripts': { name: 'Scripts', bg: lilac, color: T.ink, dek: 'Reels, ads, explainers. Words that sound like someone said them.', sticker: butter },
     'video-edits': { name: 'Video Edits', bg: sky, color: T.ink, dek: 'Tight cuts, honest grades, music that earns its place.', sticker: peach },
-    'ai-workflows': { name: 'AI Workflows', bg: T.ink, color: T.paper, dek: 'Drafts, variants, dubs, b-roll — on tap.', sticker: mint },
+    'ai-workflows': { name: 'AI Workflows', bg: mint, color: T.ink, dek: 'Drafts, variants, dubs, b-roll — on tap.', sticker: lilac },
     'brand-identity': { name: 'Brand Identity', bg: butter, color: T.ink, dek: 'Marks, type, guidelines.', sticker: lilac },
     'websites-social': { name: 'Websites & Social', bg: peach, color: T.ink, dek: 'Framer, reels, management.', sticker: sky }
   };
@@ -324,32 +324,40 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     return (
       <React.Fragment>
         {/* Bespoke Hero */}
-        <section style={{ position: 'relative', padding: isMobile ? '180px 20px 40px' : `260px 40px ${slug === 'video-edits' ? 40 : 120}px`, background: T.ink, color: T.paper, minHeight: slug === 'video-edits' ? 'auto' : '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
-          <SPStatusSticker T={T} F={F} top={isMobile ? 10 : isTablet ? 40 : 80} right={isMobile ? 10 : isTablet ? 40 : 120} rotate={8} variant="tape" tape={T.popB} bg={d.hero.color} icon="+" iconBg={T.ink} label="Service" name={data.name} zIndex={5} scale={isMobile ? 0.5 : isTablet ? 0.75 : 1} />
-          <SPStar size={isMobile ? 50 : isTablet ? 75 : 100} color={T.popA} rotate={-15} bottom={isMobile ? 20 : isTablet ? 60 : 100} left={isMobile ? 10 : isTablet ? 40 : 80} zIndex={5} />
+        <section style={{ 
+          position: 'relative', 
+          padding: isMobile ? '160px 20px 80px' : `220px 40px ${slug === 'video-edits' ? 80 : 140}px`, 
+          background: data.bg, 
+          color: data.color, 
+          minHeight: slug === 'video-edits' ? 'auto' : '75vh', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          alignItems: 'center',
+          textAlign: 'center',
+          overflow: 'hidden' 
+        }}>
+          <SPStatusSticker T={T} F={F} top={isMobile ? 90 : isTablet ? 120 : 140} right={isMobile ? 10 : isTablet ? 40 : '10%'} rotate={8} variant="tape" tape={T.popB} bg={d.hero.color} icon="+" iconBg={T.ink} label="Service" name={data.name} zIndex={5} scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
+          <SPStar size={isMobile ? 40 : isTablet ? 60 : 80} color={T.popA} rotate={-15} bottom={isMobile ? 40 : isTablet ? 80 : 120} left={isMobile ? 20 : isTablet ? 40 : '10%'} zIndex={5} />
 
           {slug === 'video-edits' && !isMobile && (
             <>
-              <SPStatusSticker T={T} F={F} top={isTablet ? 60 : 100} left={isTablet ? 150 : 350} rotate={-5} variant="torn" bg={sky} icon="▶" iconBg={T.ink} label="Format" name="Short Form" size="sm" zIndex={10} scale={isTablet ? 0.8 : 1} />
-              <SPStatusSticker T={T} F={F} bottom={isTablet ? 60 : 100} right={isTablet ? 100 : 250} rotate={12} variant="square" bg={peach} icon="✂" iconBg={T.ink} label="Status" name="Cutting" size="sm" zIndex={10} scale={isTablet ? 0.8 : 1} />
-              {/* <SPStatusSticker T={T} F={F} top={160} right={200} rotate={-8} variant="tape" tape={T.popC} bg={butter} icon="⚡" iconBg={T.ink} label="Pacing" name="Dynamic" size="sm" zIndex={10} /> */}
-              {/* <SPStatusSticker T={T} F={F} bottom={80} left={150} rotate={14} variant="round" bg={mint} icon="🎧" iconBg={T.ink} label="Audio" name="Sound Design" size="sm" zIndex={10} />  */}
+              <SPStatusSticker T={T} F={F} top={isTablet ? 100 : 160} left={isTablet ? 20 : '15%'} rotate={-5} variant="torn" bg={sky} icon="▶" iconBg={T.ink} label="Format" name="Short Form" size="sm" zIndex={10} scale={isTablet ? 0.7 : 0.9} />
+              <SPStatusSticker T={T} F={F} bottom={isTablet ? 60 : 100} right={isTablet ? 20 : '18%'} rotate={12} variant="square" bg={peach} icon="✂" iconBg={T.ink} label="Status" name="Cutting" size="sm" zIndex={10} scale={isTablet ? 0.7 : 0.9} />
             </>
           )}
-          <SPParallax speed={0.05}>
-            <h1 style={{ fontFamily: F.display, fontSize: 'clamp(50px, 8vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, maxWidth: 1200 }}>
+          <SPParallax speed={0.04}>
+            <h1 style={{ fontFamily: F.display, fontSize: 'clamp(48px, 9vw, 130px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: '0 auto', maxWidth: 1100 }}>
               {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span><br />{d.hero.t2}
             </h1>
           </SPParallax>
-          <div style={{ marginTop: 60, display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1fr 1fr', gap: 40 }}>
-            <p style={{ fontSize: 'clamp(18px, 2vw, 24px)', lineHeight: 1.5, opacity: 0.8, margin: 0, maxWidth: 500 }}>
+          <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 32, position: 'relative', zIndex: 10 }}>
+            <p style={{ fontSize: 'clamp(18px, 2.2vw, 24px)', lineHeight: 1.5, opacity: 0.85, margin: '0 auto', maxWidth: 640 }}>
               {d.hero.sub}
             </p>
-            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-              <Link to="/contact" style={{ display: 'inline-flex', padding: '20px 40px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 12px 24px rgba(255,255,255,0.15)`; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>{d.hero.cta}</Link>
-            </div>
+            <Link to="/contact" style={{ display: 'inline-flex', padding: '20px 44px', background: data.color, color: data.bg, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 12px 24px rgba(0,0,0,0.15)`; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>{d.hero.cta}</Link>
           </div>
         </section>
 

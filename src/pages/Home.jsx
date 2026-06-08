@@ -45,10 +45,10 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
     { top: '5%', right: '5%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', zIndex: 20 },
     { top: '15%', left: '25%', rotate: 14, variant: 'square', bg: sky, icon: '✦', label: 'Vibe check', name: 'Immaculate', iconBg: T.popC, size: 'md', zIndex: 20 },
     { top: '15%', right: '25%', rotate: -11, variant: 'tape', tape: T.popB, bg: T.paper, icon: '⏱', label: 'Deadline', name: 'Yesterday', iconBg: T.popA, size: 'md', zIndex: 20 },
-    { top: '60%', left: '10%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
+    { top: '65%', left: '10%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
     { top: '65%', right: '10%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', zIndex: 20 },
-    { top: '60%', left: '30%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
-    { top: '63%', right: '30%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
+    { top: '70%', left: '30%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '75%', right: '30%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
   ];
 
 

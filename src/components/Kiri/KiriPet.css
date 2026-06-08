@@ -1,0 +1,323 @@
+/* Base Wrapper Styles */
+.kiri-wrapper {
+  position: fixed;
+  bottom: 0px;
+  width: 100px;
+  height: 80px;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.kiri-shadow {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  margin-left: -25px;
+  width: 50px;
+  height: 8px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  transition: transform 0.2s;
+}
+
+.kiri-bubble {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) !important;
+  background: white;
+  color: black;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.1);
+  pointer-events: none;
+  z-index: 10;
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.kiri-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px) scale(0.8); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.kiri-heart {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: #ff4b4b;
+  pointer-events: none;
+  z-index: 20;
+  animation: floatHeart 1s ease-out forwards;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateX(-50%) translateY(0) scale(0.5); opacity: 0; }
+  20% { transform: translateX(-50%) translateY(-15px) scale(1.2); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(-50px) scale(1); opacity: 0; }
+}
+
+/* =========================================
+   DACHSHUND DOM ART
+   ========================================= */
+.dachshund-container {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  margin: 0 auto;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+/* Base Body Parts */
+.d-body {
+  position: absolute;
+  left: 10px;
+  bottom: 12px;
+  width: 55px;
+  height: 22px;
+  background: #222; /* Black coat */
+  border-radius: 12px;
+  z-index: 3;
+}
+.d-belly {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 45px;
+  height: 6px;
+  background: #c58641; /* Tan points */
+  border-radius: 0 0 10px 10px;
+}
+.d-chest {
+  position: absolute;
+  right: -5px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  background: #c58641;
+  border-radius: 50%;
+}
+
+.d-head {
+  position: absolute;
+  right: 5px;
+  top: -2px;
+  width: 28px;
+  height: 32px;
+  background: #222;
+  border-radius: 14px 14px 10px 10px;
+  z-index: 5;
+  transform-origin: 30% 80%;
+}
+
+.d-snout {
+  position: absolute;
+  right: -12px;
+  bottom: 4px;
+  width: 18px;
+  height: 12px;
+  background: #c58641;
+  border-radius: 6px 12px 10px 6px;
+  z-index: 6;
+}
+.d-nose {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.d-ear {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 14px;
+  height: 24px;
+  background: #111;
+  border-radius: 8px 8px 12px 12px;
+  transform-origin: center top;
+  z-index: 7;
+}
+
+.d-eye {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 50%;
+  z-index: 8;
+}
+.d-eye.left { left: 8px; top: 12px; }
+.d-eye.right { right: 4px; top: 12px; }
+.d-catchlight {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.d-eyebrow {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #c58641;
+  border-radius: 50%;
+  top: 6px;
+  z-index: 8;
+}
+.d-eyebrow.left { left: 9px; }
+.d-eyebrow.right { right: 5px; }
+
+.d-tail {
+  position: absolute;
+  left: 2px;
+  bottom: 24px;
+  width: 20px;
+  height: 6px;
+  background: #222;
+  border-radius: 3px;
+  transform-origin: right center;
+  transform: rotate(-30deg);
+  z-index: 2;
+}
+
+/* Legs */
+.d-leg {
+  position: absolute;
+  bottom: 2px;
+  width: 6px;
+  height: 14px;
+  background: #c58641;
+  border-radius: 3px;
+  transform-origin: center top;
+}
+.d-leg.back-left { left: 14px; background: #a46d33; z-index: 1; }
+.d-leg.front-left { right: 30px; background: #a46d33; z-index: 1; }
+.d-leg.back-right { left: 24px; z-index: 4; }
+.d-leg.front-right { right: 20px; z-index: 4; }
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+/* Idle */
+.kiri-idle .d-head { animation: breathe 3s infinite alternate ease-in-out; }
+.kiri-idle .d-tail { animation: tail-wag 2s infinite alternate ease-in-out; }
+
+/* Walk */
+.kiri-walk .d-leg.front-right { animation: leg-swing 0.3s infinite alternate; }
+.kiri-walk .d-leg.back-left { animation: leg-swing 0.3s infinite alternate; }
+.kiri-walk .d-leg.front-left { animation: leg-swing 0.3s infinite alternate-reverse; }
+.kiri-walk .d-leg.back-right { animation: leg-swing 0.3s infinite alternate-reverse; }
+.kiri-walk .dachshund-container { animation: walk-bounce 0.4s infinite alternate; }
+.kiri-walk .d-head { animation: head-bob 0.4s infinite alternate; }
+
+/* Run */
+.kiri-run .d-leg.front-right { animation: run-swing 0.2s infinite alternate; }
+.kiri-run .d-leg.front-left { animation: run-swing 0.2s infinite alternate; animation-delay: 0.05s; }
+.kiri-run .d-leg.back-right { animation: run-swing-rev 0.2s infinite alternate; }
+.kiri-run .d-leg.back-left { animation: run-swing-rev 0.2s infinite alternate; animation-delay: 0.05s; }
+.kiri-run .dachshund-container { animation: run-bounce 0.2s infinite alternate; }
+.kiri-run .d-ear { animation: ear-flop 0.2s infinite alternate; }
+.kiri-run .d-tail { animation: tail-wag 0.1s infinite alternate; }
+
+/* Sit */
+.kiri-sit .dachshund-container { transform: translateY(8px); transition: transform 0.3s; }
+.kiri-sit .d-leg.back-left, .kiri-sit .d-leg.back-right { transform: rotate(90deg) translateX(4px); }
+.kiri-sit .d-tail { transform: rotate(-10deg); }
+
+/* Sleep */
+.kiri-sleep .dachshund-container { transform: translateY(12px); transition: transform 0.5s; }
+.kiri-sleep .d-head { transform: rotate(-30deg) translateY(5px); }
+.kiri-sleep .d-leg { transform: rotate(90deg); }
+.kiri-sleep .d-tail { transform: rotate(0deg); }
+.kiri-sleep .d-body { animation: breathe 4s infinite alternate ease-in-out; }
+
+/* Look */
+.kiri-look .d-head { animation: head-tilt 2s infinite alternate; }
+
+/* Jump */
+.kiri-jump .dachshund-container { animation: jump-arc 0.6s ease-out; }
+.kiri-jump .d-leg.front-right, .kiri-jump .d-leg.front-left { transform: rotate(-30deg); }
+.kiri-jump .d-leg.back-right, .kiri-jump .d-leg.back-left { transform: rotate(30deg); }
+
+/* Hello */
+.kiri-hello .d-head { animation: head-tilt 1s infinite alternate; }
+.kiri-hello .d-tail { animation: tail-wag 0.2s infinite alternate; }
+.kiri-hello .dachshund-container { animation: walk-bounce 0.3s infinite alternate; }
+
+/* Keyframes */
+@keyframes leg-swing {
+  0% { transform: rotate(-35deg); }
+  100% { transform: rotate(35deg); }
+}
+@keyframes run-swing {
+  0% { transform: rotate(-45deg); }
+  100% { transform: rotate(25deg); }
+}
+@keyframes run-swing-rev {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(-25deg); }
+}
+@keyframes tail-wag {
+  0% { transform: rotate(-20deg); }
+  100% { transform: rotate(-50deg); }
+}
+@keyframes ear-flop {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(15deg); }
+}
+@keyframes walk-bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+@keyframes run-bounce {
+  0% { transform: translateY(0) rotate(-3deg); }
+  100% { transform: translateY(-12px) rotate(3deg); }
+}
+@keyframes jump-arc {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
+}
+@keyframes head-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+@keyframes head-bob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
+}
+@keyframes breathe {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(1.03); }
+}

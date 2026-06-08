@@ -27,23 +27,28 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
   // Floating status stickers — varied rotation, tape, torn edges
   const statusStickers = isMobile ? [
-    { top: '5%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'sm', scale: 0.7, zIndex: 20 },
-    { top: '5%', right: '5%', rotate: 12, variant: 'torn', bg: sky, icon: '✦', label: 'Vibe check', name: 'Immaculate', iconBg: T.popC, size: 'sm', scale: 0.7, zIndex: 20 },
-    { top: '90%', left: '20%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'sm', scale: 0.7, zIndex: 20 },
+    { top: '2%', left: '-3%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '5%', right: '-2%', rotate: 12, variant: 'torn', bg: sky, icon: '✦', label: 'Vibe check', name: 'Immaculate', iconBg: T.popC, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '18%', left: '-15%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '22%', right: '15%', rotate: -11, variant: 'tape', tape: T.popB, bg: T.paper, icon: '⏱', label: 'Deadline', name: 'Yesterday', iconBg: T.popA, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '75%', left: '-5%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '70%', right: '8%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '90%', left: '-15%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'sm', scale: 0.65, zIndex: 20 },
+    { top: '86%', right: '5%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'sm', scale: 0.65, zIndex: 20 }
   ] : isTablet ? [
     { top: '10%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', scale: 0.75, zIndex: 20 },
     { top: '10%', right: '5%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', scale: 0.75, zIndex: 20 },
     { top: '85%', left: '5%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', scale: 0.75, zIndex: 20 },
     { top: '85%', right: '5%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', scale: 0.75, zIndex: 20 }
   ] : [
-    { top: '10%', left: '10%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', zIndex: 20 },
-    { top: '10%', right: '5%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '20%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', zIndex: 20 },
+    { top: '5%', right: '5%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', zIndex: 20 },
     { top: '15%', left: '25%', rotate: 14, variant: 'square', bg: sky, icon: '✦', label: 'Vibe check', name: 'Immaculate', iconBg: T.popC, size: 'md', zIndex: 20 },
     { top: '15%', right: '25%', rotate: -11, variant: 'tape', tape: T.popB, bg: T.paper, icon: '⏱', label: 'Deadline', name: 'Yesterday', iconBg: T.popA, size: 'md', zIndex: 20 },
-    { top: '80%', left: '10%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
-    { top: '80%', right: '10%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', zIndex: 20 },
-    { top: '85%', left: '30%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
-    { top: '85%', right: '30%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
+    { top: '60%', left: '10%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
+    { top: '65%', right: '10%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', zIndex: 20 },
+    { top: '60%', left: '30%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '63%', right: '30%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
   ];
 
 
@@ -93,7 +98,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
             <span>Bengaluru · IN · Est. 2023</span>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: isMobile ? 300 : 600, position: 'relative' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: isMobile ? 450 : 600, position: 'relative' }}>
             {statusStickers.map((st, i) =>
               <SPStatusSticker key={i} T={T} F={F} {...st} />
             )}
@@ -228,7 +233,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       <section style={{ padding: isMobile ? '80px 20px' : '140px 40px', background: butter, borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}`, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <SPStar size={120} color={T.popB} rotate={15} top={40} right={isMobile ? -20 : 60} />
         <SPStar size={90} color={T.popA} rotate={-20} bottom={isMobile ? 20 : 120} left={isMobile ? -20 : 60} />
-        
+
         <SPNoise T={T} />
 
         <div style={{ position: 'relative', zIndex: 1 }}>

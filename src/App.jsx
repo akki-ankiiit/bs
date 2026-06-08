@@ -8,6 +8,7 @@ import Journal from './pages/Journal.jsx';
 import Contact from './pages/Contact.jsx';
 import ServiceDetail from './pages/Service-detail.jsx';
 import { SP_THEMES, SP_TYPE } from './theme/theme';
+import KiriPet from './components/Kiri/KiriPet.jsx';
 
 export default function App() {
   const location = useLocation();
@@ -32,6 +33,9 @@ export default function App() {
   }, [location.pathname]);
 
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const [showKiri, setShowKiri] = React.useState(() => {
+    return localStorage.getItem('kiri_enabled') !== 'false';
+  });
 
   React.useEffect(() => {
     const handleMouseMove = (e) => {
@@ -41,8 +45,17 @@ export default function App() {
         y: (e.clientY / window.innerHeight) - 0.5 
       });
     };
+    
+    const handleKiriToggle = () => {
+      setShowKiri(localStorage.getItem('kiri_enabled') !== 'false');
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('kiri_toggle', handleKiriToggle);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('kiri_toggle', handleKiriToggle);
+    };
   }, []);
 
   return (
@@ -81,6 +94,9 @@ export default function App() {
         <Route path="/contact" element={<Contact themeKey={themeKey} typeKey={typeKey} />} />
         <Route path="/service-detail" element={<ServiceDetail themeKey={themeKey} typeKey={typeKey} />} />
       </Routes>
+
+      {/* Global Interactive Digital Pet */}
+      {showKiri && <KiriPet size={80} bottomOffset={0} />}
     </>
   );
 }

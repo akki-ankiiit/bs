@@ -75,16 +75,18 @@ function SPStudio({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       {/* Studio photo placeholder — big pastel block with stickers */}
       <section style={{ padding: isMobile ? '20px 20px 60px' : isTablet ? '30px 30px 60px' : '40px 40px 80px' }}>
         <div style={{
-          width: '100%', height: 520, background: `linear-gradient(135deg, ${sky} 0%, ${lilac} 100%)`,
+          width: '100%', height: 520, 
           borderRadius: 24, border: `1px solid ${T.ink}`, position: 'relative', overflow: 'hidden',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          {/* placeholder for studio photo */}
-          <div style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', opacity: 0.4 }}>[ Studio photo goes here ]</div>
-          <SPStatusSticker T={T} F={F} top={isMobile ? 20 : 40} left={isMobile ? 10 : 60} rotate={-6} variant="tape" tape={T.popA} bg={T.paper} icon="📍" iconBg={T.ink} label="Location" name="Koramangala 5th Block" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
-          <SPStatusSticker T={T} F={F} bottom={isMobile ? 30 : 60} right={isMobile ? 10 : 80} rotate={5} variant="torn" bg={butter} icon="☀" iconBg={T.popB} label="Weather" name="28°C / hazy" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
-          <SPStatusSticker T={T} F={F} top={isMobile ? 120 : isTablet ? 150 : 180} right={isMobile ? 10 : isTablet ? 40 : 200} rotate={-4} variant="square" bg={mint} icon="🎧" iconBg={T.ink} label="Current album" name="On loop" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
-          <SPStar size={isMobile ? 40 : isTablet ? 60 : 80} color={T.popA} rotate={15} top={isMobile ? 20 : 40} right={isMobile ? 120 : isTablet ? 200 : 300} />
+          <img src="/uploads/studio.png" alt="Blackspace Studio" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
+          
+          <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%' }}>
+            <SPStatusSticker T={T} F={F} top={isMobile ? 20 : 40} left={isMobile ? 10 : 60} rotate={-6} variant="tape" tape={T.popA} bg={T.paper} icon="📍" iconBg={T.ink} label="Location" name="Koramangala 5th Block" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
+            <SPStatusSticker T={T} F={F} bottom={isMobile ? 30 : 60} right={isMobile ? 10 : 80} rotate={5} variant="torn" bg={butter} icon="☀" iconBg={T.popB} label="Weather" name="28°C / hazy" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
+            <SPStatusSticker T={T} F={F} top={isMobile ? 120 : isTablet ? 150 : 180} right={isMobile ? 10 : isTablet ? 40 : 200} rotate={-4} variant="square" bg={mint} icon="🎧" iconBg={T.ink} label="Current album" name="On loop" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
+            <SPStar size={isMobile ? 40 : isTablet ? 60 : 80} color={T.popA} rotate={15} top={isMobile ? 20 : 40} right={isMobile ? 120 : isTablet ? 200 : 300} />
+          </div>
         </div>
       </section>
 

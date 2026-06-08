@@ -169,13 +169,11 @@ export function SPSticker({ T, F, top, left, right, bottom, rotate = 0, bg, vari
   const shadowOffset = 3 + Math.floor(Math.abs(rotate) / 4);
 
   const baseWrapper = {
-    position: 'absolute', top, left, right, bottom, zIndex, willChange: 'transform',
-    transform: scale !== 1 ? `scale(${scale})` : undefined,
-    transformOrigin: 'center center'
+    position: 'absolute', top, left, right, bottom, zIndex, willChange: 'transform'
   };
 
   const baseInner = {
-    transform: `rotate(${rotate}deg)`,
+    transform: `scale(${scale}) rotate(${rotate}deg)`,
     background: bg,
     color: T.ink,
     padding: dims.pad,
@@ -305,6 +303,17 @@ export function SPSectionHead({ T, F, num, title, titleIt, dek, color }) {
 
 export function SPFooter({ T, F }) {
   const isMobile = useIsMobile();
+  const [kiriEnabled, setKiriEnabled] = React.useState(() => {
+    return localStorage.getItem('kiri_enabled') !== 'false';
+  });
+
+  const toggleKiri = () => {
+    const newState = !kiriEnabled;
+    setKiriEnabled(newState);
+    localStorage.setItem('kiri_enabled', newState);
+    window.dispatchEvent(new Event('kiri_toggle'));
+  };
+
   const footer = { padding: isMobile ? '40px 20px' : '40px', display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: 40, borderTop: `1px solid ${T.ink}`, background: 'transparent', color: T.ink, fontFamily: F.body, fontSize: 13, overflowX: 'hidden' };
   const h = { fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, opacity: 0.7 };
   const bigWord = { fontFamily: F.display, fontSize: 'clamp(48px, 15vw, 120px)', fontWeight: 700, letterSpacing: '-0.05em', lineHeight: 0.9, margin: 0 };
@@ -333,7 +342,16 @@ export function SPFooter({ T, F }) {
         <div style={h}>Social</div>
         <span>Instagram ↗</span>
         <span>LinkedIn ↗</span>
-        {/* <span>Vimeo ↗</span> */}
+        <button 
+          onClick={toggleKiri}
+          style={{ 
+            background: 'none', border: 'none', padding: 0, margin: '16px 0 0 0', 
+            color: T.ink, fontFamily: F.body, fontSize: 13, textAlign: 'left',
+            cursor: 'pointer', opacity: 0.8, textDecoration: 'underline'
+          }}
+        >
+          {kiriEnabled ? 'Disable Kiri 🐾' : 'Enable Kiri 🐾'}
+        </button>
       </div>
     </footer>
   );

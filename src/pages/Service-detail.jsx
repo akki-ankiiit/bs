@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
 import { useBreakpoints } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
@@ -13,14 +13,10 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
   const [mint, lilac, sky, butter, peach] = T.pastels;
   const { isMobile, isTablet, isDesktop } = useBreakpoints();
 
-  // Read query params safely
-  const [slug, setSlug] = React.useState('video-edits');
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('id')) setSlug(params.get('id'));
-    }
-  }, []);
+  // Read query params safely and idiomatic to React Router
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const slug = searchParams.get('id') || 'video-edits';
 
   const serviceData = {
     'content-campaigns': { name: 'Content Campaigns', bg: T.paper, color: T.ink, dek: 'End-to-end. Concept, script, shoot, cut, post. One team, no handoffs, no blame.', sticker: mint },

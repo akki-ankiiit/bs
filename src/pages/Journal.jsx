@@ -3,6 +3,79 @@ import { Link } from 'react-router-dom';
 import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax, SPNoise } from '../components/SPKit';
 import { useBreakpoints } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
+import f1CarPng from '../assets/f1-car.png';
+
+const CarouselPost = ({ entry, T, F, f1CarPng }) => {
+  const [index, setIndex] = React.useState(0);
+  const mocks = entry.mocks;
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIndex((i) => (i + 1) % mocks.length);
+  };
+
+  const handlePrev = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIndex((i) => (i - 1 + mocks.length) % mocks.length);
+  };
+
+  return (
+    <div style={{
+      background: T.paper, border: `1px solid ${T.ink}`, borderRadius: 12,
+      transform: `rotate(${mocks[index].rotate || 0}deg)`,
+      boxShadow: `4px 6px 0 ${T.ink}15`,
+      fontFamily: F.body, transition: 'transform 0.3s ease',
+      margin: entry.big ? '12px 20px 20px' : '8px 12px 24px',
+      position: 'relative', overflow: 'hidden'
+    }}
+    onMouseEnter={e => { e.currentTarget.style.transform = `rotate(0deg) translateY(-4px)`; }}
+    onMouseLeave={e => { e.currentTarget.style.transform = `rotate(${mocks[index].rotate || 0}deg) translateY(0)`; }}>
+      
+      {mocks.length > 1 && (
+        <div style={{ position: 'absolute', top: 8, right: 8, display: 'flex', gap: 4, zIndex: 10 }}>
+          <button onClick={handlePrev} style={{ width: 24, height: 24, borderRadius: 12, background: T.ink, color: T.paper, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, boxShadow: `2px 2px 0 ${T.popA}`, transition: 'transform 0.1s' }}
+            onMouseDown={e => e.currentTarget.style.transform = 'translate(1px, 1px)'}
+            onMouseUp={e => e.currentTarget.style.transform = 'none'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'none'}
+          >←</button>
+          <button onClick={handleNext} style={{ width: 24, height: 24, borderRadius: 12, background: T.ink, color: T.paper, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, boxShadow: `2px 2px 0 ${T.popA}`, transition: 'transform 0.1s' }}
+            onMouseDown={e => e.currentTarget.style.transform = 'translate(1px, 1px)'}
+            onMouseUp={e => e.currentTarget.style.transform = 'none'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'none'}
+          >→</button>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', transition: 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', transform: `translateX(-${index * 100}%)` }}>
+        {mocks.map((currentMock, idx) => (
+          <div key={idx} style={{ width: '100%', flexShrink: 0, padding: '16px 20px', boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+              <div style={{ width: 28, height: 28, borderRadius: 14, background: currentMock.avatarBg || T.ink, color: T.paper, border: `1px solid ${T.ink}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontSize: 14, fontWeight: 700 }}>
+                {currentMock.initial}
+              </div>
+              <div>
+                <div style={{ fontWeight: 600, fontSize: 13, lineHeight: 1.1 }}>{currentMock.author}</div>
+                <div style={{ fontSize: 10, opacity: 0.6, marginTop: 2 }}>{currentMock.platform} • {currentMock.time}</div>
+              </div>
+            </div>
+            <p style={{ fontSize: 13, lineHeight: 1.4, margin: 0, opacity: 0.9 }}>{currentMock.excerpt}</p>
+            {currentMock.hasImage && (
+              <div style={{ width: '100%', borderRadius: 6, marginTop: 12, border: `1px solid ${T.ink}44`, overflow: 'hidden', background: T.paper }}>
+                <img src={f1CarPng} alt="Post media" style={{ width: '100%', maxHeight: 120, objectFit: 'cover', display: 'block', imageRendering: 'pixelated' }} />
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: 16, marginTop: 12, fontSize: 10, opacity: 0.6, fontWeight: 600 }}>
+              <span>♡ {currentMock.likes}</span>
+              <span>💬 {currentMock.comments}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 // JOURNAL page — blog / updates / notes
 
@@ -20,17 +93,81 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       category: 'LinkedIn',
       readTime: 'Read post',
       bg: lilac,
-      big: true,
-      mock: {
-        author: 'Shraddha',
-        initial: 'S',
-        platform: 'LinkedIn',
-        time: '2h',
-        rotate: -2,
-        excerpt: 'We often get asked how we maintain the brand voice across 40+ variations. The answer is surprisingly analog. We print the scripts and read them out loud. If you stumble, you rewrite.',
-        likes: '142',
-        comments: '18'
-      }
+      big: false,
+      mocks: [
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'LinkedIn',
+          time: '2h',
+          rotate: -2,
+          excerpt: 'We often get asked how we maintain the brand voice across 40+ variations. The answer is surprisingly analog. We print the scripts and read them out loud. If you stumble, you rewrite.',
+          likes: '142',
+          comments: '18'
+        },
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'X.com',
+          time: '1d',
+          rotate: 1,
+          excerpt: 'Controversial take: Your B2B copy doesn\'t have to sound like a textbook. People buy from people. Write like a human.',
+          likes: '2.1k',
+          comments: '89'
+        },
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'Instagram',
+          time: '2d',
+          rotate: -1,
+          excerpt: 'Team lunch after shipping the biggest campaign of the year. So proud of this squad.',
+          hasImage: true,
+          likes: '950',
+          comments: '42'
+        },
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'LinkedIn',
+          time: '4d',
+          rotate: 2,
+          excerpt: 'Why storytelling matters more than ever in an AI-generated world: authenticity is the only moat left.',
+          likes: '345',
+          comments: '56'
+        },
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'X.com',
+          time: '5d',
+          rotate: -3,
+          excerpt: 'Just discovered a new geometric sans font and my entire afternoon is now booked.',
+          likes: '1.2k',
+          comments: '112'
+        },
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'Instagram',
+          time: '1w',
+          rotate: 1,
+          excerpt: 'Behind the scenes on set for the new hardware launch. The lighting here is chef\'s kiss.',
+          hasImage: true,
+          likes: '1.4k',
+          comments: '88'
+        },
+        {
+          author: 'Shraddha',
+          initial: 'S',
+          platform: 'LinkedIn',
+          time: '2w',
+          rotate: 0,
+          excerpt: 'Hiring! We need a senior copywriter who understands rhythm and pacing. DMs are open.',
+          likes: '890',
+          comments: '124'
+        }
+      ]
     },
     {
       date: 'May 28, 2026',
@@ -39,16 +176,98 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       readTime: 'View posts',
       bg: sky,
       big: false,
-      mock: {
-        author: 'Bharat',
-        initial: 'B',
-        platform: 'X.com',
-        time: '5h',
-        rotate: 3,
-        excerpt: 'Shipping first cuts fast means we get to spend more time where it actually matters: refining the pacing and killing the darlings.',
-        likes: '3.2k',
-        comments: '45'
-      }
+      mocks: [
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'X.com',
+          time: '5h',
+          rotate: 3,
+          excerpt: 'Shipping first cuts fast means we get to spend more time where it actually matters: refining the pacing and killing the darlings.',
+          likes: '3.2k',
+          comments: '45'
+        },
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'LinkedIn',
+          time: '3d',
+          rotate: -1,
+          excerpt: 'The gap between a good video and a great video is usually just 3 frames of audio overlap.',
+          likes: '890',
+          comments: '24'
+        },
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'Instagram',
+          time: '4d',
+          rotate: 2,
+          excerpt: 'Editing timeline looking like a bowl of spaghetti. Final export rendering now.',
+          hasImage: true,
+          likes: '1.1k',
+          comments: '33'
+        },
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'X.com',
+          time: '1w',
+          rotate: -2,
+          excerpt: 'Vite + React is still undefeated for quick prototypes. Fight me.',
+          likes: '4.5k',
+          comments: '210'
+        },
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'LinkedIn',
+          time: '1w',
+          rotate: 1,
+          excerpt: 'We built Blackspace on the principle that the work speaks for itself. No fluff, just craft.',
+          likes: '678',
+          comments: '45'
+        },
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'Instagram',
+          time: '2w',
+          rotate: -1,
+          excerpt: 'New desk setup. Finally got the ultra-wide monitor calibrated.',
+          hasImage: true,
+          likes: '2.3k',
+          comments: '156'
+        },
+        {
+          author: 'Bharat',
+          initial: 'B',
+          platform: 'X.com',
+          time: '3w',
+          rotate: 3,
+          excerpt: 'Just shipped the new journaling feature! Super excited to see how people use the interactive carousels.',
+          likes: '1.8k',
+          comments: '92'
+        }
+      ]
+    },
+    {
+      date: 'April 28, 2026',
+      title: 'The AI pipeline that didn\'t break',
+      category: 'Process',
+      readTime: '6 min read',
+      excerpt: 'How we used AI to generate 42 variations of a single hook without losing the brand voice.',
+      bg: butter,
+      big: true
+    },
+    {
+      date: 'May 12, 2026',
+      title: 'Why we stopped writing 60-second scripts',
+      category: 'Craft',
+      readTime: '4 min read',
+      excerpt: 'Attention spans aren\'t shrinking, they are just getting more selective. Here is how we adapted our pacing.',
+      bg: sky,
+      big: false
     },
     {
       date: 'May 24, 2026',
@@ -57,44 +276,81 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       readTime: 'View post',
       bg: mint,
       big: false,
-      mock: {
-        author: 'Mayank',
-        initial: 'M',
-        platform: 'Instagram',
-        time: '1d',
-        rotate: -3,
-        excerpt: 'A quick dump of the moodboards and references that didn\'t make it into the final Okinawa film. Still love these.',
-        hasImage: true,
-        likes: '890',
-        comments: '12'
-      }
-    },
-    {
-      date: 'May 12, 2026',
-      title: 'Why we stopped writing 60-second scripts',
-      category: 'Craft',
-      readTime: '4 min read',
-      excerpt: 'Attention spans aren\'t shrinking, they are just getting more selective. Here is how we adapted our pacing.',
-      bg: butter,
-      big: true
-    },
-    {
-      date: 'April 28, 2026',
-      title: 'The AI pipeline that didn\'t break',
-      category: 'Process',
-      readTime: '6 min read',
-      excerpt: 'How we used AI to generate 42 variations of a single hook without losing the brand voice.',
-      bg: sky,
-      big: false
-    },
-    {
-      date: 'April 15, 2026',
-      title: 'Notes on lighting a dark studio',
-      category: 'Behind the scenes',
-      readTime: '3 min read',
-      excerpt: 'We moved into a new space and learned a lot about bouncing light off matte black walls.',
-      bg: mint,
-      big: false
+      mocks: [
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'Instagram',
+          time: '1d',
+          rotate: -3,
+          excerpt: 'A quick dump of the moodboards and references that didn\'t make it into the final Okinawa film. Still love these.',
+          hasImage: true,
+          likes: '890',
+          comments: '12'
+        },
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'Instagram',
+          time: '4d',
+          rotate: 2,
+          excerpt: 'Lighting tests for the new studio. The 1200d is a beast. We ended up bouncing it entirely off the ceiling.',
+          hasImage: false,
+          likes: '1.2k',
+          comments: '34'
+        },
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'LinkedIn',
+          time: '1w',
+          rotate: -1,
+          excerpt: 'How we approach lighting a dark set: it\'s all about controlling the spill and shaping the shadows.',
+          likes: '456',
+          comments: '28'
+        },
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'X.com',
+          time: '1w',
+          rotate: 1,
+          excerpt: 'New camera just arrived! Time to put it through some dynamic range tests.',
+          likes: '890',
+          comments: '67'
+        },
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'Instagram',
+          time: '2w',
+          rotate: -2,
+          excerpt: 'Scouting locations for the next big shoot. Found this incredible abandoned warehouse.',
+          hasImage: true,
+          likes: '1.5k',
+          comments: '88'
+        },
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'X.com',
+          time: '3w',
+          rotate: 3,
+          excerpt: 'Unpopular opinion: natural light is a trap. You lose control of your scene the second a cloud rolls by.',
+          likes: '3.4k',
+          comments: '312'
+        },
+        {
+          author: 'Mayank',
+          initial: 'M',
+          platform: 'LinkedIn',
+          time: '1m',
+          rotate: -1,
+          excerpt: 'The intersection of tech and cinematography is fascinating right now. Virtual production is changing everything.',
+          likes: '890',
+          comments: '45'
+        }
+      ]
     },
     {
       date: 'March 30, 2026',
@@ -102,8 +358,17 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       category: 'Opinion',
       readTime: '5 min read',
       excerpt: 'Sometimes the best starting point is a chaotic brain dump. Don\'t polish it, just send it.',
-      bg: butter,
+      bg: peach,
       big: true
+    },
+    {
+      date: 'April 15, 2026',
+      title: 'Notes on lighting a dark studio',
+      category: 'Behind the scenes',
+      readTime: '3 min read',
+      excerpt: 'We moved into a new space and learned a lot about bouncing light off matte black walls.',
+      bg: lilac,
+      big: false
     },
     {
       date: 'March 10, 2026',
@@ -111,8 +376,8 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       category: 'Design',
       readTime: '2 min read',
       excerpt: 'A quick look at the font pairings we are reaching for the most this quarter.',
-      bg: peach,
-      big: false
+      bg: mint,
+      big: true
     }
   ];
 
@@ -156,7 +421,7 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
       {/* Articles Grid */}
       <section style={{ padding: isMobile ? '20px 20px 60px' : isTablet ? '30px 30px 60px' : '40px 40px 80px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: 'auto', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: 'auto', gridAutoFlow: 'dense', gap: 24 }}>
           {entries.map((entry, i) => (
             <article key={i} style={{
               gridColumn: isMobile ? '1 / -1' : isTablet ? (entry.big ? 'span 12' : 'span 6') : `span ${entry.big ? 8 : 4}`,
@@ -180,34 +445,8 @@ function SPJournal({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
                     </span>
                   </div>
                   
-                  {entry.mock ? (
-                    <div style={{
-                      background: T.paper, border: `1px solid ${T.ink}`, borderRadius: 16,
-                      padding: 24, transform: `rotate(${entry.mock.rotate}deg)`,
-                      boxShadow: `4px 6px 0 ${T.ink}15`,
-                      fontFamily: F.body, transition: 'transform 0.3s ease',
-                      margin: entry.big ? '16px 24px 24px' : '12px 16px 28px'
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.transform = `rotate(0deg) translateY(-4px)`; }}
-                    onMouseLeave={e => { e.currentTarget.style.transform = `rotate(${entry.mock.rotate}deg) translateY(0)`; }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-                        <div style={{ width: 36, height: 36, borderRadius: 18, background: entry.mock.avatarBg || T.ink, color: T.paper, border: `1px solid ${T.ink}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontSize: 16, fontWeight: 700 }}>
-                          {entry.mock.initial}
-                        </div>
-                        <div>
-                          <div style={{ fontWeight: 600, fontSize: 14, lineHeight: 1.2 }}>{entry.mock.author}</div>
-                          <div style={{ fontSize: 11, opacity: 0.6, marginTop: 2 }}>{entry.mock.platform} • {entry.mock.time}</div>
-                        </div>
-                      </div>
-                      <p style={{ fontSize: 14, lineHeight: 1.45, margin: 0, opacity: 0.9 }}>{entry.mock.excerpt}</p>
-                      {entry.mock.hasImage && (
-                        <div style={{ width: '100%', height: 100, background: `linear-gradient(135deg, ${sky} 0%, ${lilac} 100%)`, borderRadius: 8, marginTop: 16, border: `1px solid ${T.ink}44` }}></div>
-                      )}
-                      <div style={{ display: 'flex', gap: 20, marginTop: 16, fontSize: 11, opacity: 0.6, fontWeight: 600 }}>
-                        <span>♡ {entry.mock.likes}</span>
-                        <span>💬 {entry.mock.comments}</span>
-                      </div>
-                    </div>
+                  {entry.mocks ? (
+                    <CarouselPost entry={entry} T={T} F={F} f1CarPng={f1CarPng} />
                   ) : (
                     <>
                       <h3 style={{ fontFamily: F.display, fontSize: entry.big ? 'clamp(32px, 6vw, 56px)' : 'clamp(28px, 5vw, 40px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 0.95, margin: 0 }}>{entry.title}</h3>

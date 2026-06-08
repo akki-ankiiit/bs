@@ -38,18 +38,81 @@ if (typeof document !== 'undefined' && !document.getElementById('sp-sticker-styl
       white-space: nowrap;
       animation: marqueeScroll 35s linear infinite;
     }
+    .sp-noise-dots {
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+      will-change: transform, background-position;
+    }
+    .sp-noise-parent:hover .sp-noise-dots {
+      animation: dotsSmoothFloat 4s linear infinite;
+      opacity: 0.25 !important;
+      transform: scale(1.05);
+    }
+    @keyframes dotsSmoothFloat {
+      0% { background-position: 0px 0px; }
+      100% { background-position: 24px 24px; }
+    }
   `;
   document.head.appendChild(styleEl);
 }
 
+export function SPNoise({ T, dark = false }) {
+  const dotColor = dark ? 'rgba(255,255,255,0.8)' : T.ink;
+  const opacityDot = dark ? 0.1 : 0.15;
+  const opacityNoise = dark ? 0.2 : 0.12;
+  const noiseBlend = dark ? 'screen' : 'color-burn';
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    if (ref.current && ref.current.parentElement) {
+      ref.current.parentElement.classList.add('sp-noise-parent');
+    }
+  }, []);
+  
+  return (
+    <div ref={ref} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+      {/* Halftone dot pattern (atoms) */}
+      <div className="sp-noise-dots" style={{
+        position: 'absolute', top: -40, left: -40, right: -40, bottom: -40,
+        backgroundImage: `radial-gradient(${dotColor} 1px, transparent 1.5px)`,
+        backgroundSize: '8px 8px',
+        opacity: opacityDot,
+        mixBlendMode: dark ? 'screen' : 'multiply',
+      }} />
+      {/* Organic noise for distress effect */}
+      <div style={{
+        position: 'absolute', top: -20, left: -20, right: -20, bottom: -20,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        opacity: opacityNoise,
+        mixBlendMode: noiseBlend,
+      }} />
+    </div>
+  );
+}
+
 export function SPNav({ T, F, active = 'Work' }) {
   const isMobile = useIsMobile();
-  const [menuOpen, React_useState] = React.useState(false);
-  const setMenuOpen = React_useState;
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const items = ['Work', 'Studio', 'Services', 'Journal', 'Contact'];
   const hrefs = { Work: '/work', Studio: '/studio', Services: '/services', Journal: '/journal', Contact: '/contact' };
-  const navStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: isMobile ? '16px 20px' : '22px 40px', fontSize: 13, fontFamily: F.body, position: 'sticky', top: 0, zIndex: 100, background: `${T.paper}cc`, backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderBottom: `1px solid ${T.ink}11` };
+  const navStyle = { 
+    display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+    padding: isMobile ? '16px 20px' : '22px 40px', fontSize: 13, fontFamily: F.body, 
+    position: 'fixed', top: 0, left: 0, width: '100%', boxSizing: 'border-box', zIndex: 100, 
+    background: scrolled ? `${T.paper}cc` : 'transparent', 
+    backdropFilter: scrolled ? 'blur(16px)' : 'none', 
+    WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none', 
+    borderBottom: scrolled ? `1px solid ${T.ink}11` : '1px solid transparent',
+    transition: 'background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, border-color 0.3s ease'
+  };
   const logo = { fontFamily: F.display, fontSize: isMobile ? 20 : 22, fontWeight: 700, letterSpacing: '-0.03em', display: 'flex', alignItems: 'center', gap: 8, color: T.ink, textDecoration: 'none' };
 
   const mobileMenuWrap = {
@@ -96,7 +159,9 @@ export function SPNav({ T, F, active = 'Work' }) {
   );
 }
 
-export function SPSticker({ T, F, top, left, right, bottom, rotate = 0, bg, variant = 'tape', tape, size = 'md', children, zIndex = 10, speed = 0.18 }) {
+
+
+export function SPSticker({ T, F, top, left, right, bottom, rotate = 0, bg, variant = 'tape', tape, size = 'md', children, zIndex = 10, speed = 0.18, scale = 1 }) {
   const ref = useRef(null);
   useParallaxStyle(ref, speed);
 
@@ -104,7 +169,9 @@ export function SPSticker({ T, F, top, left, right, bottom, rotate = 0, bg, vari
   const shadowOffset = 3 + Math.floor(Math.abs(rotate) / 4);
 
   const baseWrapper = {
-    position: 'absolute', top, left, right, bottom, zIndex, willChange: 'transform'
+    position: 'absolute', top, left, right, bottom, zIndex, willChange: 'transform',
+    transform: scale !== 1 ? `scale(${scale})` : undefined,
+    transformOrigin: 'center center'
   };
 
   const baseInner = {
@@ -143,8 +210,8 @@ export function SPSticker({ T, F, top, left, right, bottom, rotate = 0, bg, vari
 
   return (
     <div ref={ref} style={baseWrapper}>
-      <div 
-        style={{ ...baseInner, transition: 'transform 0.3s ease, box-shadow 0.3s ease', cursor: 'pointer' }} 
+      <div
+        style={{ ...baseInner, transition: 'transform 0.3s ease, box-shadow 0.3s ease', cursor: 'pointer' }}
         className="sp-sticker"
         onMouseEnter={e => { e.currentTarget.style.transform = `rotate(${rotate}deg) translateY(-6px)`; e.currentTarget.style.boxShadow = `0 16px 32px rgba(0,0,0,0.15)`; }}
         onMouseLeave={e => { e.currentTarget.style.transform = `rotate(${rotate}deg)`; e.currentTarget.style.boxShadow = baseInner.boxShadow; }}
@@ -238,7 +305,7 @@ export function SPSectionHead({ T, F, num, title, titleIt, dek, color }) {
 
 export function SPFooter({ T, F }) {
   const isMobile = useIsMobile();
-  const footer = { padding: isMobile ? '40px 20px' : '40px', display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: 40, borderTop: `1px solid ${T.ink}`, background: T.paper, color: T.ink, fontFamily: F.body, fontSize: 13, overflowX: 'hidden' };
+  const footer = { padding: isMobile ? '40px 20px' : '40px', display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: 40, borderTop: `1px solid ${T.ink}`, background: 'transparent', color: T.ink, fontFamily: F.body, fontSize: 13, overflowX: 'hidden' };
   const h = { fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 12, opacity: 0.7 };
   const bigWord = { fontFamily: F.display, fontSize: 'clamp(48px, 15vw, 120px)', fontWeight: 700, letterSpacing: '-0.05em', lineHeight: 0.9, margin: 0 };
   const it = { fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 };
@@ -246,7 +313,7 @@ export function SPFooter({ T, F }) {
   return (
     <footer style={footer}>
       <div style={isMobile ? { gridColumn: '1 / -1', marginBottom: 20 } : {}}>
-        <h3 style={bigWord}>let's<span style={it}>talk.</span></h3>
+        <h3 style={bigWord}>let's  <span style={it}>talk.</span></h3>
         <div style={{ marginTop: 20, fontSize: 14, opacity: 0.7 }}>© Blackspace™ 2025 — all feelings reserved.</div>
       </div>
       <div style={col}>
@@ -266,7 +333,7 @@ export function SPFooter({ T, F }) {
         <div style={h}>Social</div>
         <span>Instagram ↗</span>
         <span>LinkedIn ↗</span>
-        <span>Vimeo ↗</span>
+        {/* <span>Vimeo ↗</span> */}
       </div>
     </footer>
   );

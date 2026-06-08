@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
-import { useIsMobile } from '../hooks';
+import { useBreakpoints } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
 
 // CONTACT page — form + "what happens next" + team on-call
@@ -11,10 +11,10 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   const F = SP_TYPE[typeKey];
 
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = useIsMobile();
+  const { isMobile, isTablet, isDesktop } = useBreakpoints();
 
   const services = ['Content Campaign', 'Scripts', 'Video Edits', 'AI Workflows', 'Brand Identity', 'Website', 'Social', 'Not sure yet'];
-  const budgets = ['< ₹2L', '₹2–5L', '₹5–12L', '₹12L+', 'Retainer'];
+  const budgets = ['< ₹2L', '₹2–5L', '₹5–12L', '₹12L+'];
 
   const input = {
     background: T.paper, border: `1px solid ${T.ink}`, borderRadius: 12,
@@ -34,6 +34,7 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
   const [activeSvc, setActiveSvc] = React.useState('Content Campaign');
   const [activeBudget, setActiveBudget] = React.useState('₹5–12L');
+  const [isRetainer, setIsRetainer] = React.useState(false);
 
   const sideCardStyle = (bg) => ({
     background: bg, border: `1px solid ${T.ink}`, borderRadius: 20, padding: 24, position: 'relative',
@@ -49,20 +50,20 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   };
 
   return (
-    <div style={{ background: T.paper, color: T.ink, fontFamily: F.body, minHeight: '100vh' }}>
+    <div style={{ background: 'transparent', color: T.ink, fontFamily: F.body, minHeight: '100vh' }}>
       <SPNav T={T} F={F} active="Contact" />
 
       {/* Hero */}
-      <section style={{ padding: isMobile ? '40px 20px 20px' : '60px 40px 40px', position: 'relative' }}>
+      <section style={{ padding: isMobile ? '100px 20px 20px' : isTablet ? '120px 30px 30px' : '140px 40px 40px', position: 'relative' }}>
         <div style={{ display: isMobile ? 'none' : 'flex', justifyContent: 'space-between', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 32, opacity: 0.7 }}>
           <span>✳ Contact · Say hi</span>
           <span>We reply in 1 business day. Usually less.</span>
         </div>
 
         <div style={{ position: 'relative' }}>
-          {!isMobile && <SPStatusSticker T={T} F={F} top={10} left={120} rotate={-7} variant="tape" tape={T.popA} bg={mint} icon="◉" iconBg={T.ink} label="Right now" name="Taking briefs" />}
-          {!isMobile && <SPStatusSticker T={T} F={F} top={300} right={140} rotate={8} variant="torn" bg={butter} icon="✎" iconBg={T.popB} label="Team status" name="Writing pitches" />}
-          {!isMobile && <SPStar size={70} color={T.popA} rotate={18} top={60} right={60} />}
+          <SPStatusSticker T={T} F={F} top={isMobile ? -30 : isTablet ? -10 : 10} left={isMobile ? 10 : isTablet ? 30 : 120} rotate={-7} variant="tape" tape={T.popA} bg={mint} icon="◉" iconBg={T.ink} label="Right now" name="Taking briefs" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
+          <SPStatusSticker T={T} F={F} top={isMobile ? 180 : isTablet ? 220 : 300} right={isMobile ? 10 : isTablet ? 40 : 140} rotate={8} variant="torn" bg={butter} icon="✎" iconBg={T.popB} label="Team status" name="Writing pitches" scale={isMobile ? 0.6 : isTablet ? 0.75 : 1} />
+          <SPStar size={isMobile ? 40 : isTablet ? 55 : 70} color={T.popA} rotate={18} top={isMobile ? 20 : isTablet ? 40 : 60} right={isMobile ? 10 : isTablet ? 30 : 60} />
 
           <h1 style={{ fontFamily: F.display, fontSize: isMobile ? '80px' : 'clamp(140px, 18vw, 260px)', lineHeight: 0.84, fontWeight: 700, letterSpacing: '-0.05em', margin: 0, textAlign: 'center' }}>
             say the <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>thing.</span>
@@ -76,8 +77,8 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       </section>
 
       {/* Form + side */}
-      <section style={{ padding: isMobile ? '40px 20px' : '60px 40px 80px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.4fr 1fr', gap: isMobile ? 32 : 40 }}>
+      <section style={{ padding: isMobile ? '40px 20px' : isTablet ? '50px 30px 60px' : '60px 40px 80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1.4fr 1fr', gap: isMobile || isTablet ? 32 : 40 }}>
 
           {/* Form */}
           <div style={{
@@ -95,7 +96,7 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
               border: `1px solid ${T.ink}`, transform: 'rotate(-3deg)',
             }}>New brief ↓</div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20, marginTop: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1fr 1fr', gap: 20, marginTop: 16 }}>
               <div>
                 <label style={label}>Your name</label>
                 <input style={input} placeholder="Riya Kapoor" />
@@ -125,10 +126,12 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
             <div style={{ marginTop: 24 }}>
               <label style={label}>Budget range</label>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
                 {budgets.map(b => (
-                  <span key={b} style={chip(b === activeBudget)} onClick={() => setActiveBudget(b)}>{b}</span>
+                  <span key={b} style={chip(b === activeBudget)} onClick={() => setActiveBudget(activeBudget === b ? null : b)}>{b}</span>
                 ))}
+                <span style={{ width: 1, height: 24, background: T.ink, opacity: 0.2, margin: '0 4px' }} />
+                <span style={chip(isRetainer)} onClick={() => setIsRetainer(!isRetainer)}>Retainer</span>
               </div>
             </div>
 
@@ -151,8 +154,8 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
                 boxShadow: `3px 3px 0 ${T.ink}`,
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `5px 6px 0 ${T.ink}`; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `3px 3px 0 ${T.ink}`; }}>Send brief →</button>
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `5px 6px 0 ${T.ink}`; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `3px 3px 0 ${T.ink}`; }}>Send brief →</button>
             </div>
           </div>
 
@@ -175,7 +178,7 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
               <div style={{ display: 'grid', gap: 8, fontSize: 14 }}>
                 <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Instagram</span><span>@blackspace.media ↗</span></Link>
                 <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>LinkedIn</span><span>/blackspace-media ↗</span></Link>
-                <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Vimeo</span><span>/blackspace ↗</span></Link>
+                {/* <Link to="#" style={{ color: T.ink, textDecoration: 'none', display: 'flex', justifyContent: 'space-between' }}><span>Vimeo</span><span>/blackspace ↗</span></Link> */}
               </div>
             </div>
 
@@ -191,9 +194,9 @@ function SPContact({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       </section>
 
       {/* What happens next */}
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 40px', background: T.ink, color: T.paper }}>
+      <section style={{ padding: isMobile ? '60px 20px' : isTablet ? '70px 30px' : '80px 40px', background: T.ink, color: T.paper }}>
         <SPSectionHead T={T} F={F} num="§ 02 / Next" title="What happens" titleIt="when you send this." dek="A rough schedule, from our side." />
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4,1fr)', gap: isMobile ? 40 : 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap: isMobile || isTablet ? 40 : 20 }}>
           {[
             { n: 'Day 0', h: 'Auto-reply.', b: 'You get a receipt. It\'s short. We\'re reading.' },
             { n: 'Day 1', h: 'A human replies.', b: 'With either a call invite, follow-up questions, or a soft decline.' },

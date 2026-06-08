@@ -10,6 +10,28 @@ export function useIsMobile() {
   return isMobile;
 }
 
+export function useBreakpoints() {
+  const [breakpoints, setBreakpoints] = useState({
+    isMobile: typeof window !== 'undefined' ? window.innerWidth < 768 : false,
+    isTablet: typeof window !== 'undefined' ? window.innerWidth >= 768 && window.innerWidth < 1200 : false,
+    isDesktop: typeof window !== 'undefined' ? window.innerWidth >= 1200 : true,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setBreakpoints({
+        isMobile: window.innerWidth < 768,
+        isTablet: window.innerWidth >= 768 && window.innerWidth < 1200,
+        isDesktop: window.innerWidth >= 1200,
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return breakpoints;
+}
+
 export function useParallaxStyle(ref, speed) {
   useEffect(() => {
     if (!ref.current || !speed) return;

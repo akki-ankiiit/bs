@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
-import { useIsMobile } from '../hooks';
+import { useBreakpoints } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
 import { Target, Calendar, Lightbulb, Map, Rocket, Megaphone, Sprout, BarChart, Smartphone, Play, Mic, User, Tv, BookOpen, Sparkles, PenTool, Music, Image as ImageIcon, Bot, TrendingUp, RefreshCw, Search, Brain, Settings, FileText, CheckCircle, Monitor, Globe, UserSquare, MousePointerClick, Check } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
   const F = SP_TYPE[typeKey];
 
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = useIsMobile();
+  const { isMobile, isTablet, isDesktop } = useBreakpoints();
 
   // Read query params safely
   const [slug, setSlug] = React.useState('video-edits');
@@ -188,7 +188,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px' }}>
         <SPSectionHead T={T} F={F} num="§ 02 / Archive" title="Project" titleIt="Archive." dek="A visual dump of what we've been up to." />
 
-        <div style={{ columnCount: isMobile ? 2 : 4, columnGap: isMobile ? 12 : 16 }}>
+        <div style={{ columnCount: isMobile ? 2 : isTablet ? 3 : 4, columnGap: isMobile ? 12 : 16 }}>
           {masonryVideos.map((v, i) => (
             <div
               key={i}
@@ -328,14 +328,14 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     return (
       <React.Fragment>
         {/* Bespoke Hero */}
-        <section style={{ position: 'relative', padding: isMobile ? '120px 20px 40px' : `180px 40px ${slug === 'video-edits' ? 40 : 120}px`, background: T.ink, color: T.paper, minHeight: slug === 'video-edits' ? 'auto' : '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
-          {!isMobile && <SPStatusSticker T={T} F={F} top={80} right={120} rotate={8} variant="tape" tape={T.popB} bg={d.hero.color} icon="+" iconBg={T.ink} label="Service" name={data.name} zIndex={5} />}
-          {!isMobile && <SPStar size={100} color={T.popA} rotate={-15} bottom={100} left={80} zIndex={5} />}
+        <section style={{ position: 'relative', padding: isMobile ? '180px 20px 40px' : `260px 40px ${slug === 'video-edits' ? 40 : 120}px`, background: T.ink, color: T.paper, minHeight: slug === 'video-edits' ? 'auto' : '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
+          <SPStatusSticker T={T} F={F} top={isMobile ? 10 : isTablet ? 40 : 80} right={isMobile ? 10 : isTablet ? 40 : 120} rotate={8} variant="tape" tape={T.popB} bg={d.hero.color} icon="+" iconBg={T.ink} label="Service" name={data.name} zIndex={5} scale={isMobile ? 0.5 : isTablet ? 0.75 : 1} />
+          <SPStar size={isMobile ? 50 : isTablet ? 75 : 100} color={T.popA} rotate={-15} bottom={isMobile ? 20 : isTablet ? 60 : 100} left={isMobile ? 10 : isTablet ? 40 : 80} zIndex={5} />
 
           {slug === 'video-edits' && !isMobile && (
             <>
-              <SPStatusSticker T={T} F={F} top={100} left={350} rotate={-5} variant="torn" bg={sky} icon="▶" iconBg={T.ink} label="Format" name="Short Form" size="sm" zIndex={10} />
-              <SPStatusSticker T={T} F={F} bottom={100} right={250} rotate={12} variant="square" bg={peach} icon="✂" iconBg={T.ink} label="Status" name="Cutting" size="sm" zIndex={10} />
+              <SPStatusSticker T={T} F={F} top={isTablet ? 60 : 100} left={isTablet ? 150 : 350} rotate={-5} variant="torn" bg={sky} icon="▶" iconBg={T.ink} label="Format" name="Short Form" size="sm" zIndex={10} scale={isTablet ? 0.8 : 1} />
+              <SPStatusSticker T={T} F={F} bottom={isTablet ? 60 : 100} right={isTablet ? 100 : 250} rotate={12} variant="square" bg={peach} icon="✂" iconBg={T.ink} label="Status" name="Cutting" size="sm" zIndex={10} scale={isTablet ? 0.8 : 1} />
               {/* <SPStatusSticker T={T} F={F} top={160} right={200} rotate={-8} variant="tape" tape={T.popC} bg={butter} icon="⚡" iconBg={T.ink} label="Pacing" name="Dynamic" size="sm" zIndex={10} /> */}
               {/* <SPStatusSticker T={T} F={F} bottom={80} left={150} rotate={14} variant="round" bg={mint} icon="🎧" iconBg={T.ink} label="Audio" name="Sound Design" size="sm" zIndex={10} />  */}
             </>
@@ -345,7 +345,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
               {d.hero.t1}<span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>{d.hero.hl}</span><br />{d.hero.t2}
             </h1>
           </SPParallax>
-          <div style={{ marginTop: 60, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 40 }}>
+          <div style={{ marginTop: 60, display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1fr 1fr', gap: 40 }}>
             <p style={{ fontSize: 'clamp(18px, 2vw, 24px)', lineHeight: 1.5, opacity: 0.8, margin: 0, maxWidth: 500 }}>
               {d.hero.sub}
             </p>
@@ -362,7 +362,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
 
         {/* What We Do */}
         <section style={{ padding: isMobile ? '80px 20px' : '160px 40px', background: T.paper, color: T.ink }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 40 : 80 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1fr 2fr', gap: isMobile || isTablet ? 40 : 80 }}>
             <div>
               <div style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, borderTop: `1px solid ${T.ink}`, paddingTop: 16 }}>{d.wwd.t}</div>
             </div>
@@ -378,7 +378,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
         {/* Deliverables */}
         <section style={{ padding: isMobile ? '80px 20px' : '120px 40px', background: T.paper, color: T.ink, borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}` }}>
           <SPSectionHead T={T} F={F} num="§ Output" title="The" titleIt={d.deliv.t + "."} dek="Everything you need." />
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', gap: 16, marginTop: 40 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 16, marginTop: 40 }}>
             {d.deliv.items.map((item, i) => (
               <div key={i} style={{ gridColumn: isMobile ? '1 / -1' : `span ${item.span}`, padding: 24, background: item.c, borderRadius: 20, border: `1px solid ${T.ink}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 140, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 12px 24px rgba(0,0,0,0.1)`; }}
@@ -417,7 +417,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
           <div style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 60, textAlign: 'center' }}>
             {d.results.t} <span style={{ fontFamily: F.italic, fontStyle: 'italic', textTransform: 'none', fontSize: 16 }}>& Outcomes</span>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : `repeat(${Math.min(4, d.results.items.length)}, 1fr)`, gap: 24, maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : `repeat(${Math.min(4, d.results.items.length)}, 1fr)`, gap: 24, maxWidth: 1200, margin: '0 auto' }}>
             {d.results.items.map((r, i) => {
               const words = r.t.split(' ');
               const firstWord = words[0];
@@ -458,7 +458,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
   };
 
   return (
-    <div style={{ background: T.paper, color: T.ink, fontFamily: F.body, minHeight: '100vh', overflowX: 'hidden' }}>
+    <div style={{ background: 'transparent', color: T.ink, fontFamily: F.body, minHeight: '100vh', overflowX: 'hidden' }}>
       <SPNav T={T} F={F} active="Services" />
 
       {/* Bespoke Dynamic Layout */}

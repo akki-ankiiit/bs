@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
-import { useIsMobile } from '../hooks';
+import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax, SPNoise } from '../components/SPKit';
+import { useBreakpoints } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
 
 // HOME page — sticker pop, refined with handmade stickers, fun statuses, Acid TM
@@ -12,11 +12,11 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
   const F = SP_TYPE[typeKey];
 
   const [mint, lilac, sky, butter, peach] = T.pastels;
-  const isMobile = useIsMobile();
+  const { isMobile, isTablet, isDesktop } = useBreakpoints();
 
-  const root = { width: '100%', minHeight: 2400, background: T.paper, color: T.ink, fontFamily: F.body, position: 'relative' };
+  const root = { width: '100%', minHeight: 2400, background: 'transparent', color: T.ink, fontFamily: F.body, position: 'relative' };
 
-  const hero = { padding: isMobile ? '40px 20px' : '60px 40px 80px', position: 'relative' };
+  const hero = { padding: isMobile ? '100px 20px 40px' : isTablet ? '120px 30px 60px' : '140px 40px 80px', position: 'relative' };
   const heroMeta = { display: isMobile ? 'none' : 'flex', justifyContent: 'space-between', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 40, fontFamily: F.body };
   const wordmark = { fontFamily: F.display, fontSize: 'clamp(180px, 24vw, 360px)', lineHeight: 0.82, fontWeight: 700, letterSpacing: '-0.06em', margin: 0, textAlign: 'center', position: 'relative', color: T.ink };
   const wordmarkItal = { fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.ink, letterSpacing: '-0.03em' };
@@ -27,15 +27,23 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
   // Floating status stickers — varied rotation, tape, torn edges
   const statusStickers = isMobile ? [
-    { top: '10%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'sm', zIndex: 20 },
-    { top: '80%', right: '5%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'sm', zIndex: 20 },
+    { top: '5%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'sm', scale: 0.7, zIndex: 20 },
+    { top: '5%', right: '5%', rotate: 12, variant: 'torn', bg: sky, icon: '✦', label: 'Vibe check', name: 'Immaculate', iconBg: T.popC, size: 'sm', scale: 0.7, zIndex: 20 },
+    { top: '90%', left: '20%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'sm', scale: 0.7, zIndex: 20 },
+  ] : isTablet ? [
+    { top: '10%', left: '5%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', scale: 0.75, zIndex: 20 },
+    { top: '10%', right: '5%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', scale: 0.75, zIndex: 20 },
+    { top: '85%', left: '5%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', scale: 0.75, zIndex: 20 },
+    { top: '85%', right: '5%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', scale: 0.75, zIndex: 20 }
   ] : [
-    { top: '5%', left: '8%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', zIndex: 20 },
-    { top: '10%', right: '10%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', zIndex: 20 },
-    { top: '45%', left: '2%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
-    { top: '50%', right: '2%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', zIndex: 20 },
-    { top: '80%', left: '20%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
-    { top: '85%', right: '20%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
+    { top: '10%', left: '10%', rotate: -8, variant: 'tape', tape: T.popA, bg: mint, icon: '◉', label: 'Right now', name: 'On Set', iconBg: T.ink, size: 'md', zIndex: 20 },
+    { top: '10%', right: '5%', rotate: 9, variant: 'torn', bg: lilac, icon: '✂', label: 'Currently', name: 'Editing', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '15%', left: '25%', rotate: 14, variant: 'square', bg: sky, icon: '✦', label: 'Vibe check', name: 'Immaculate', iconBg: T.popC, size: 'md', zIndex: 20 },
+    { top: '15%', right: '25%', rotate: -11, variant: 'tape', tape: T.popB, bg: T.paper, icon: '⏱', label: 'Deadline', name: 'Yesterday', iconBg: T.popA, size: 'md', zIndex: 20 },
+    { top: '80%', left: '10%', rotate: -5, variant: 'tape', tape: '#b0b0b0', bg: butter, icon: '☕', label: 'Team status', name: 'Brewing Coffee', iconBg: T.popA, size: 'md', zIndex: 20 },
+    { top: '80%', right: '10%', rotate: 7, variant: 'square', bg: peach, icon: 'AI', label: 'In the oven', name: 'Draft Engine', iconBg: T.ink, size: 'md', zIndex: 20 },
+    { top: '85%', left: '30%', rotate: -4, variant: 'torn', bg: sky, icon: '✎', label: 'Fresh', name: 'Script Pass 3', iconBg: T.popB, size: 'md', zIndex: 20 },
+    { top: '85%', right: '30%', rotate: 11, variant: 'tape', tape: T.popC, bg: mint, icon: '▶', label: 'Playback', name: 'Reel Cut', iconBg: T.popA, size: 'md', zIndex: 20 }
   ];
 
 
@@ -70,39 +78,49 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
     <div style={root}>
       <SPNav T={T} F={F} active="" />
 
-      <section style={hero}>
-        <div style={heroMeta}>
-          <span>✳ Blackspace® — A content studio</span>
-          <span>Bengaluru · IN · Est. 2023</span>
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: isMobile ? 300 : 600, position: 'relative' }}>
-          {statusStickers.map((st, i) =>
-            <SPStatusSticker key={i} T={T} F={F} {...st} />
-          )}
-          {!isMobile && <SPStar size={80} color={T.popA} rotate={20} top="-2%" right="35%" />}
-          {!isMobile && <SPStar size={56} color={T.popB} rotate={-10} top="65%" left="15%" />}
-          {!isMobile && <SPStar size={44} color={T.popC} rotate={15} top="30%" right="5%" />}
-
-          <div className="sp-wordmark" style={{ zIndex: 10, position: 'relative', width: '100%', padding: isMobile ? '0 10px' : 0, boxSizing: 'border-box' }}>
-            <img src="../logo.svg" alt="Blackspace" style={{ width: '100%', maxWidth: isMobile ? 400 : 900, height: 'auto', display: 'block', margin: '0 auto' }} />
+      <section style={{
+        ...hero,
+        overflow: 'hidden',
+        background: `
+          radial-gradient(circle at 15% 10%, ${mint}44 0%, transparent 35%),
+          radial-gradient(circle at 85% 20%, ${lilac}44 0%, transparent 35%),
+          radial-gradient(circle at 50% 80%, ${butter}40 0%, transparent 50%)
+        `
+      }}>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={heroMeta}>
+            <span>✳ Blackspace® — A creative studio</span>
+            <span>Bengaluru · IN · Est. 2023</span>
           </div>
-        </div>
 
-        <div style={heroBottom}>
-          <SPParallax speed={0.04} style={{ ...heroDek, order: isMobile ? 1 : 2, flex: 1, maxWidth: isMobile ? '100%' : 400 }}>
-            <em>We write, shoot, cut & <span style={{ color: T.popA }}>occasionally go viral.</span></em>
-          </SPParallax>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: isMobile ? 300 : 600, position: 'relative' }}>
+            {statusStickers.map((st, i) =>
+              <SPStatusSticker key={i} T={T} F={F} {...st} />
+            )}
+            <SPStar size={isMobile ? 40 : isTablet ? 60 : 80} color={T.popA} rotate={20} top={isMobile ? "5%" : isTablet ? "5%" : "5%"} left={isMobile ? "40%" : isTablet ? "40%" : "45%"} />
+            <SPStar size={isMobile ? 30 : isTablet ? 40 : 56} color={T.popB} rotate={-10} top={isMobile ? "75%" : isTablet ? "80%" : "85%"} left={isMobile ? "40%" : isTablet ? "40%" : "45%"} />
+            <SPStar size={isMobile ? 24 : isTablet ? 30 : 44} color={T.popC} rotate={15} top={isMobile ? "30%" : isTablet ? "40%" : "45%"} right={isMobile ? "5%" : isTablet ? "5%" : "5%"} />
 
-          <SPParallax speed={0.08} style={{ ...heroBlock, order: isMobile ? 2 : 1, textAlign: isMobile ? 'center' : 'left', flex: 1 }}>
-            <div style={heroBlockHead}>↳ What we are</div>
-            <p style={{ margin: 0 }}>A creative studio making content campaigns, scripts, edits, and brand work — with AI quietly doing the laundry in the back.</p>
-          </SPParallax>
+            <div className="sp-wordmark" style={{ zIndex: 10, position: 'relative', width: '100%', padding: isMobile ? '0 10px' : 0, boxSizing: 'border-box' }}>
+              <img src="../logo.svg" alt="Blackspace" style={{ width: '100%', maxWidth: isMobile ? 400 : 900, height: 'auto', display: 'block', margin: '0 auto' }} />
+            </div>
+          </div>
 
-          <SPParallax speed={0.06} style={{ ...heroBlock, order: 3, textAlign: isMobile ? 'center' : 'right', flex: 1 }}>
-            <div style={heroBlockHead}>(2) Discover ↓</div>
-            <p style={{ margin: 0 }}>Scripts → Shoots → Edits → AI → Posts → Repeat. Seven days a week, minus the occasional Sunday.</p>
-          </SPParallax>
+          <div style={heroBottom}>
+            <SPParallax speed={0.04} style={{ ...heroDek, order: isMobile ? 1 : 2, flex: 1, maxWidth: isMobile ? '100%' : 400 }}>
+              <em>We write, shoot, cut & <span style={{ color: T.popA }}>occasionally go viral.</span></em>
+            </SPParallax>
+
+            <SPParallax speed={0.08} style={{ ...heroBlock, order: isMobile ? 2 : 1, textAlign: isMobile ? 'center' : 'left', flex: 1 }}>
+              <div style={heroBlockHead}>↳ What we are</div>
+              <p style={{ margin: 0 }}>A creative studio making content campaigns, scripts, edits, and brand work — with AI quietly doing the laundry in the back.</p>
+            </SPParallax>
+
+            <SPParallax speed={0.06} style={{ ...heroBlock, order: 3, textAlign: isMobile ? 'center' : 'right', flex: 1 }}>
+              <div style={heroBlockHead}>(2) Discover ↓</div>
+              <p style={{ margin: 0 }}>Scripts → Shoots → Edits → AI → Posts → Repeat. Seven days a week, minus the occasional Sunday.</p>
+            </SPParallax>
+          </div>
         </div>
       </section>
 
@@ -111,10 +129,10 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       {/* Services */}
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px' }}>
         <SPSectionHead T={T} F={F} num="§ 01 / Services" title="The menu," titleIt="in pastel." dek="Six things. Done fully, not partially." />
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile ? 'auto' : 220, gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile || isTablet ? 'auto' : 220, gap: 16 }}>
           {services.map((svc, i) =>
             <Link key={i} to={`/service-detail?id=${svc.slug}`} style={{
-              gridColumn: isMobile ? '1 / -1' : `span ${svc.col}`, gridRow: isMobile ? 'auto' : `span ${svc.row}`,
+              gridColumn: isMobile ? '1 / -1' : isTablet ? 'span 6' : `span ${svc.col}`, gridRow: isMobile || isTablet ? 'auto' : `span ${svc.row}`,
               background: svc.bg, border: `1px solid ${T.ink}`, borderRadius: 20,
               padding: 28, position: 'relative', overflow: 'hidden', color: svc.dark ? T.paper : T.ink, fontFamily: F.body,
               textDecoration: 'none', display: 'block', cursor: 'pointer',
@@ -140,10 +158,10 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       {/* Work */}
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px', background: T.ink, color: T.paper }}>
         <SPSectionHead T={T} F={{ ...F }} num="§ 02 / Selected Work" title="Receipts," titleIt="attached." dek="Six shown. Forty-six under NDA." />
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile ? 'auto' : 180, gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile || isTablet ? 'auto' : 180, gap: 12 }}>
           {work.map((w, i) =>
             <div key={i} style={{
-              gridColumn: isMobile ? '1 / -1' : `span ${w.col}`, gridRow: isMobile ? 'auto' : `span ${w.row}`, background: w.bg,
+              gridColumn: isMobile ? '1 / -1' : isTablet ? 'span 6' : `span ${w.col}`, gridRow: isMobile || isTablet ? 'auto' : `span ${w.row}`, background: w.bg,
               minHeight: isMobile ? 240 : 'auto',
               borderRadius: 16, position: 'relative', overflow: 'hidden', padding: 20,
               color: w.dark ? T.paper : T.ink, border: `1px solid ${w.dark ? T.paper : T.ink}33`, fontFamily: F.body, cursor: 'pointer',
@@ -173,7 +191,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       <section style={{ background: T.popA, color: T.paper, padding: isMobile ? '40px 20px' : '60px 40px', borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}`, position: 'relative', overflow: 'hidden' }}>
         <SPStar size={140} color={T.popB} rotate={20} top={-30} right={isMobile ? -20 : 120} />
         <SPStar size={90} color={butter} rotate={-15} bottom={-20} left={isMobile ? -20 : 60} />
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 30 : 60, alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1fr 1fr', gap: isMobile || isTablet ? 30 : 60, alignItems: 'center' }}>
           <div style={{ fontFamily: F.display, fontSize: 'clamp(40px, 12vw, 120px)', fontWeight: 700, lineHeight: 0.9, letterSpacing: '-0.05em' }}>
             AI, but <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>like,</span><br />tastefully.
           </div>
@@ -187,7 +205,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       {/* Why us */}
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px' }}>
         <SPSectionHead T={T} F={F} num="§ 03 / Why us" title="Six arguments," titleIt="if you need them." dek="Take what helps." />
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile || isTablet ? '1fr' : '1fr 1fr', gap: 20 }}>
           {[why.slice(0, 3), why.slice(3)].map((col, ci) =>
             <div key={ci}>
               {col.map((w, i) =>
@@ -210,15 +228,20 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
       <section style={{ padding: isMobile ? '80px 20px' : '140px 40px', background: butter, borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}`, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <SPStar size={120} color={T.popB} rotate={15} top={40} right={isMobile ? -20 : 60} />
         <SPStar size={90} color={T.popA} rotate={-20} bottom={isMobile ? 20 : 120} left={isMobile ? -20 : 60} />
-        <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, fontFamily: F.body, marginBottom: 24 }}>§ 04 / Let's talk</div>
-        <SPParallax speed={0.06}>
-          <h2 style={{ fontFamily: F.display, fontSize: 'clamp(60px, 15vw, 240px)', lineHeight: 0.85, fontWeight: 700, letterSpacing: '-0.06em', margin: 0, color: T.ink }}>
-            Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>make</span><br />something.
-          </h2>
-        </SPParallax>
-        <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: F.body, textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>hello@blackspace.media →</Link>
+        
+        <SPNoise T={T} />
+
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, fontFamily: F.body, marginBottom: 24 }}>§ 04 / Let's talk</div>
+          <SPParallax speed={0.06}>
+            <h2 style={{ fontFamily: F.display, fontSize: 'clamp(60px, 15vw, 240px)', lineHeight: 0.85, fontWeight: 700, letterSpacing: '-0.06em', margin: 0, color: T.ink }}>
+              Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>make</span><br />something.
+            </h2>
+          </SPParallax>
+          <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 40, padding: '22px 34px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: F.body, textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>hello@blackspace.media →</Link>
+        </div>
       </section>
 
       <SPFooter T={T} F={F} />

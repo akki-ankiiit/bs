@@ -92,6 +92,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
           radial-gradient(circle at 50% 80%, ${butter}40 0%, transparent 50%)
         `
       }}>
+        <SPNoise T={T} />
         <div style={{ position: 'relative', zIndex: 2 }}>
           <div style={heroMeta}>
             <span>✳ Blackspace® — A creative studio</span>
@@ -133,7 +134,7 @@ function SPHome({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
 
       {/* Services */}
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px' }}>
-        <SPSectionHead T={T} F={F} num="§ 01 / Services" title="The menu," titleIt="in pastel." dek="Six things. Done fully, not partially." />
+        <SPSectionHead T={T} F={F} num="§ 01 / Services" title="In" titleIt="pastel." dek="Six things. Done fully, not partially." />
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(12,1fr)', gridAutoRows: isMobile || isTablet ? 'auto' : 220, gap: 16 }}>
           {services.map((svc, i) =>
             <Link key={i} to={`/service-detail?id=${svc.slug}`} style={{

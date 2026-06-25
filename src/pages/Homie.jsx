@@ -287,43 +287,43 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
 
         {/* Logo ticker merged into branding section */}
         <div style={{ overflow: 'hidden', position: 'relative', paddingBottom: 32 }}>
-        <SPNoise T={T} />
+          <SPNoise T={T} />
           <div style={{ position: 'relative', zIndex: 2, display: 'flex', gap: 20, whiteSpace: 'nowrap', animation: 'marqueeRight 40s linear infinite', width: 'max-content', padding: '8px 0' }}>
-          {[...Array(3)].map((_, i) => (
-            <React.Fragment key={i}>
-              {logoImages.map((item, idx) => (
-                <div key={idx} style={{
-                  width: isMobile ? 100 : 168,
-                  height: isMobile ? 100 : 168,
-                  borderRadius: isMobile ? 12 : 14,
-                  background: '#111',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transform: `rotate(${item.rotate}deg)`,
-                  border: '1px solid #222',
-                  flexShrink: 0,
-                  transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  cursor: 'pointer'
-                }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = `scale(1.05) rotate(0deg)`;
-                    e.currentTarget.style.zIndex = 10;
-                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
-                    e.currentTarget.style.borderColor = '#333';
+            {[...Array(3)].map((_, i) => (
+              <React.Fragment key={i}>
+                {logoImages.map((item, idx) => (
+                  <div key={idx} style={{
+                    width: isMobile ? 100 : 168,
+                    height: isMobile ? 100 : 168,
+                    borderRadius: isMobile ? 12 : 14,
+                    background: '#111',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transform: `rotate(${item.rotate}deg)`,
+                    border: '1px solid #222',
+                    flexShrink: 0,
+                    transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    cursor: 'pointer'
                   }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = `rotate(${item.rotate}deg) scale(1)`;
-                    e.currentTarget.style.zIndex = 1;
-                    e.currentTarget.style.boxShadow = 'none';
-                    e.currentTarget.style.borderColor = '#1a1a1a';
-                  }}
-                >
-                  <img src={item.src} style={{ maxWidth: '65%', maxHeight: '65%', objectFit: 'contain' }} alt="Brand Logo" />
-                </div>
-              ))}
-            </React.Fragment>
-          ))}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.transform = `scale(1.05) rotate(0deg)`;
+                      e.currentTarget.style.zIndex = 10;
+                      e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+                      e.currentTarget.style.borderColor = '#333';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.transform = `rotate(${item.rotate}deg) scale(1)`;
+                      e.currentTarget.style.zIndex = 1;
+                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.borderColor = '#1a1a1a';
+                    }}
+                  >
+                    <img src={item.src} style={{ maxWidth: '65%', maxHeight: '65%', objectFit: 'contain' }} alt="Brand Logo" />
+                  </div>
+                ))}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
@@ -495,7 +495,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
         <PosterCarousel items={carouselPosters} />
 
         {/* WHY US */}
-        <div style={{ position: 'relative', zIndex: 2, height: isMobile ? 'auto' : 500, paddingBottom: isMobile ? 40 : 0, margin: '0 auto', marginTop: isMobile ? 40 : -40, width: '100%', maxWidth: 1200 }}>
+        <div style={{ position: 'relative', zIndex: 2, height: isMobile ? 'auto' : 500, paddingBottom: isMobile ? 40 : 0, margin: '0 auto', marginTop: isMobile ? 120 : 80, width: '100%', maxWidth: 1200 }}>
 
           <style>{`
             @keyframes orbitFloat {
@@ -515,23 +515,23 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
           {isMobile && (
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, padding: '0 20px', position: 'relative', zIndex: 11 }}>
               {whyUsList.map((item, i) => (
-                 <div key={i} style={{
-                    background: item.bg,
-                    border: '1px solid rgba(0,0,0,0.1)',
-                    padding: '8px 16px',
-                    borderRadius: 999,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-                 }}>
-                    <div style={{ width: 20, height: 20, borderRadius: 10, background: 'rgba(255,255,255,0.8)', color: T.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 700, fontSize: 10 }}>
-                      {item.n}
-                    </div>
-                    <h3 style={{ margin: 0, fontFamily: F.display, fontWeight: 600, fontSize: 13, letterSpacing: '-0.02em' }}>
-                      {item.h}
-                    </h3>
-                 </div>
+                <div key={i} style={{
+                  background: item.bg,
+                  border: '1px solid rgba(0,0,0,0.1)',
+                  padding: '8px 16px',
+                  borderRadius: 999,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+                }}>
+                  <div style={{ width: 20, height: 20, borderRadius: 10, background: 'rgba(255,255,255,0.8)', color: T.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 700, fontSize: 10 }}>
+                    {item.n}
+                  </div>
+                  <h3 style={{ margin: 0, fontFamily: F.display, fontWeight: 600, fontSize: 13, letterSpacing: '-0.02em' }}>
+                    {item.h}
+                  </h3>
+                </div>
               ))}
             </div>
           )}
@@ -587,7 +587,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
               </div>
             );
           })}
-          
+
         </div>
       </section>
 
@@ -599,9 +599,9 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, fontFamily: F.body, marginBottom: 24 }}>§ 05 / Let's talk</div>
-            <h2 style={{ fontFamily: '"Outfit", sans-serif', fontSize: 'clamp(48px, 10vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink }}>
-              Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>make</span><br />something.
-            </h2>
+          <h2 style={{ fontFamily: '"Outfit", sans-serif', fontSize: 'clamp(48px, 10vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink }}>
+            Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>make</span><br />something.
+          </h2>
           <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: isMobile ? 40 : 80, padding: isMobile ? '16px 24px' : '20px 32px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>hello@blackspace.media →</Link>

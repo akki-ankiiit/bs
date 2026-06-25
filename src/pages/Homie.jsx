@@ -190,7 +190,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
       </section>
 
       {/* 2. WHAT DO WE DO SECTION (Custom Layout from Image) */}
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 40px', background: '#FAF9F6', color: T.ink, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: isMobile ? '40px 20px' : '80px 40px', background: '#FAF9F6', color: T.ink, position: 'relative', overflow: 'hidden' }}>
         <SPNoise T={T} intensity="card" />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 1400, margin: '0 auto', textAlign: 'center' }}>
 
@@ -293,9 +293,9 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
             <React.Fragment key={i}>
               {logoImages.map((item, idx) => (
                 <div key={idx} style={{
-                  width: 168,
-                  height: 168,
-                  borderRadius: 14,
+                  width: isMobile ? 100 : 168,
+                  height: isMobile ? 100 : 168,
+                  borderRadius: isMobile ? 12 : 14,
                   background: '#111',
                   display: 'flex',
                   alignItems: 'center',
@@ -329,7 +329,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
       </section>
 
       {/* 5. WORK EXPERIENCE & VIDEO CAROUSEL */}
-      <section style={{ padding: isMobile ? '40px 20px 20px' : '60px 40px 20px', position: 'relative' }}>
+      <section style={{ padding: isMobile ? '60px 20px 10px' : '60px 40px 20px', position: 'relative' }}>
         <div style={{ maxWidth: 800, margin: '0 auto 24px auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
           <h2 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 8vw, 80px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: '0 0 16px 0', color: T.ink }}>
             Work <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>Experience.</span>
@@ -495,7 +495,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
         <PosterCarousel items={carouselPosters} />
 
         {/* WHY US */}
-        <div style={{ position: 'relative', zIndex: 2, height: isMobile ? 550 : 500, margin: '0 auto', marginTop: isMobile ? -20 : -40, width: '100%', maxWidth: 1200 }}>
+        <div style={{ position: 'relative', zIndex: 2, height: isMobile ? 'auto' : 500, paddingBottom: isMobile ? 40 : 0, margin: '0 auto', marginTop: isMobile ? 0 : -40, width: '100%', maxWidth: 1200 }}>
 
           <style>{`
             @keyframes orbitFloat {
@@ -506,13 +506,36 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
             }
           `}</style>
 
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', zIndex: 10, width: '100%' }}>
+          <div style={{ position: isMobile ? 'relative' : 'absolute', top: isMobile ? 'auto' : '50%', left: isMobile ? 'auto' : '50%', transform: isMobile ? 'none' : 'translate(-50%, -50%)', textAlign: 'center', zIndex: 10, width: '100%', marginBottom: isMobile ? 32 : 0, marginTop: isMobile ? 24 : 0 }}>
             <h2 style={{ fontFamily: F.display, fontSize: 'clamp(50px, 12vw, 140px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink, textShadow: '0 20px 40px rgba(0,0,0,0.05)' }}>
               Why <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>us.</span>
             </h2>
           </div>
 
-          {whyUsList.map((item, i) => {
+          {isMobile && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, padding: '0 20px', position: 'relative', zIndex: 11 }}>
+              {whyUsList.map((item, i) => (
+                 <div key={i} style={{
+                    background: item.bg,
+                    border: '1px solid rgba(0,0,0,0.1)',
+                    padding: '8px 16px',
+                    borderRadius: 999,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+                 }}>
+                    <div style={{ width: 20, height: 20, borderRadius: 10, background: 'rgba(255,255,255,0.8)', color: T.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 700, fontSize: 10 }}>
+                      {item.n}
+                    </div>
+                    <h3 style={{ margin: 0, fontFamily: F.display, fontWeight: 600, fontSize: 13, letterSpacing: '-0.02em' }}>
+                      {item.h}
+                    </h3>
+                 </div>
+              ))}
+            </div>
+          )}
+          {!isMobile && whyUsList.map((item, i) => {
             // Placement mimicking the reference image:
             // 0: Top Center, 1: Mid-Top Left, 2: Mid-Bottom Left
             // 3: Mid-Top Right, 4: Mid-Bottom Right, 5: Bottom Center
@@ -525,22 +548,13 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
               { bottom: '20%', left: '50%', transform: 'translateX(-50%)' } // Bottom Center
             ];
 
-            const mobileCoords = [
-              { top: '10%', left: '50%', transform: 'translateX(-50%)' },
-              { top: '20%', left: '5%' },
-              { top: '35%', right: '5%' },
-              { top: '50%', left: '5%' },
-              { top: '65%', right: '5%' },
-              { bottom: '5%', left: '50%', transform: 'translateX(-50%)' }
-            ];
-
-            const coords = isMobile ? mobileCoords[i] : desktopCoords[i];
+            const coords = desktopCoords[i];
             const delay = i * 0.8;
 
             return (
               <div key={i} style={{ position: 'absolute', zIndex: 20, ...coords }}>
                 <div style={{
-                  padding: isMobile ? '8px 16px' : '12px 24px',
+                  padding: '12px 24px',
                   border: '1px solid rgba(0,0,0,0.06)',
                   borderRadius: 999,
                   background: item.bg,
@@ -549,7 +563,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
                   boxShadow: '0 8px 24px rgba(0,0,0,0.06), inset 0 2px 4px rgba(255,255,255,0.4)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: isMobile ? 8 : 12,
+                  gap: 12,
                   cursor: 'pointer',
                   animation: `orbitFloat 7s ease-in-out infinite ${delay}s`
                 }}
@@ -563,33 +577,32 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
                     e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.06), inset 0 2px 4px rgba(255,255,255,0.4)';
                     e.currentTarget.style.animationPlayState = 'running';
                   }}>
-                  <div style={{ width: isMobile ? 20 : 28, height: isMobile ? 20 : 28, borderRadius: 14, background: 'rgba(255,255,255,0.8)', color: T.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 700, fontSize: isMobile ? 10 : 13 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: 14, background: 'rgba(255,255,255,0.8)', color: T.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: F.display, fontWeight: 700, fontSize: 13 }}>
                     {item.n}
                   </div>
-                  <h3 style={{ margin: 0, fontFamily: F.display, fontWeight: 600, fontSize: isMobile ? 12 : 18, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
+                  <h3 style={{ margin: 0, fontFamily: F.display, fontWeight: 600, fontSize: 18, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
                     {item.h}
                   </h3>
                 </div>
               </div>
             );
           })}
+          
         </div>
       </section>
 
       {/* 9. LET'S WORK SECTION (CTA) */}
-      <section style={{ padding: isMobile ? '60px 20px' : '80px 40px', background: butter, borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}`, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: isMobile ? '40px 20px' : '80px 40px', background: butter, borderTop: `1px solid ${T.ink}`, borderBottom: `1px solid ${T.ink}`, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <SPStar size={80} color={T.popB} rotate={15} top={40} right={isMobile ? -20 : 60} />
         <SPStar size={60} color={T.popA} rotate={-20} bottom={isMobile ? 20 : 120} left={isMobile ? -20 : 60} />
         <SPNoise T={T} />
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, fontFamily: F.body, marginBottom: 24 }}>§ 05 / Let's talk</div>
-          <SPParallax speed={0.06}>
-            <h2 style={{ fontFamily: F.display, fontSize: 'clamp(48px, 10vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink }}>
+            <h2 style={{ fontFamily: '"Outfit", sans-serif', fontSize: 'clamp(48px, 10vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink }}>
               Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>make</span><br />something.
             </h2>
-          </SPParallax>
-          <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: 80, padding: '20px 32px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+          <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: isMobile ? 40 : 80, padding: isMobile ? '16px 24px' : '20px 32px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>hello@blackspace.media →</Link>
         </div>

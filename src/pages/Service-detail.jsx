@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { SPNav, SPFooter, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPSectionHead, SPParallax } from '../components/SPKit';
+import { SPNav, SPFooter, SPNoise, SPSectionHead, SPVideoCarousel, SPSticker, SPStatusSticker, SPStar, SPMarquee, SPParallax } from '../components/SPKit';
 import { useBreakpoints } from '../hooks';
 import { SP_THEMES, SP_TYPE } from '../theme/theme';
 import { Target, Calendar, Lightbulb, Map, Rocket, Megaphone, Sprout, BarChart, Smartphone, Play, Mic, User, Tv, BookOpen, Sparkles, PenTool, Music, Image as ImageIcon, Bot, TrendingUp, RefreshCw, Search, Brain, Settings, FileText, CheckCircle, Monitor, Globe, UserSquare, MousePointerClick, Check } from 'lucide-react';
@@ -60,125 +60,11 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
     { title: 'Night Drive', vid: 'https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4', poster: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=1000' },
     { title: 'City Lights', vid: 'https://test-videos.co.uk/vids/sintel/mp4/h264/720/Sintel_720_10s_5MB.mp4', poster: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1000' },
   ];
-  const [activeIdx, setActiveIdx] = React.useState(5);
-  const videoRefs = React.useRef([]);
-
-  React.useEffect(() => {
-    videoRefs.current.forEach((vid, i) => {
-      if (vid) {
-        if (i === activeIdx) {
-          vid.play().catch(() => { });
-        } else {
-          vid.pause();
-        }
-      }
-    });
-  }, [activeIdx]);
 
   const renderVideoEditsLayout = () => (
     <React.Fragment>
       {/* Coverflow Video Carousel */}
-      <section style={{ padding: isMobile ? '60px 0' : '100px 0', background: T.ink, color: T.paper, borderTop: `1px solid ${T.ink}`, overflow: 'hidden' }}>
-        <div style={{ padding: '0 40px', marginBottom: 20 }}>
-          <SPSectionHead T={T} F={F} num="§ 01 / Featured" title="Hero" titleIt="Reels." dek="Click cards to bring them into focus." color={T.paper} />
-        </div>
-
-        {/* Carousel Container */}
-        <div style={{
-          position: 'relative', height: isMobile ? 420 : 540, width: '100%',
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
-          {/* Ambient Glow */}
-          <div style={{
-            position: 'absolute',
-            width: isMobile ? '80%' : '50%', height: '80%',
-            background: 'radial-gradient(circle, rgba(220, 20, 20, 0.4) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-            zIndex: 0,
-            pointerEvents: 'none',
-          }}></div>
-
-          {/* Left Button */}
-          <button
-            onClick={() => setActiveIdx((activeIdx - 1 + carouselItems.length) % carouselItems.length)}
-            style={{ position: 'absolute', left: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18 }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
-          >←</button>
-
-          {/* Right Button */}
-          <button
-            onClick={() => setActiveIdx((activeIdx + 1) % carouselItems.length)}
-            style={{ position: 'absolute', right: isMobile ? 10 : 40, top: '50%', transform: 'translateY(-50%)', zIndex: 20, width: 48, height: 48, borderRadius: 24, background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', color: T.paper, border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', fontSize: 18 }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
-          >→</button>
-
-          {carouselItems.map((item, i) => {
-            const offset = i - activeIdx;
-            const isActive = i === activeIdx;
-            const distance = Math.abs(offset);
-
-            const scale = isActive ? 1 : 1 - (distance * 0.15);
-            const translateX = offset * (isMobile ? 160 : 260); // tighter overlap
-            const blur = isActive ? 0 : distance * 2;
-            const zIndex = 10 - distance;
-            const brightness = isActive ? 1 : Math.max(0.4, 1 - (distance * 0.4));
-            const opacity = distance > 2 ? 0 : 1;
-
-            return (
-              <div
-                key={i}
-                onClick={() => { if (!isActive) setActiveIdx(i); }}
-                style={{
-                  position: 'absolute',
-                  width: isMobile ? 240 : 360,
-                  height: isMobile ? 360 : 500,
-                  background: '#111',
-                  borderRadius: 24,
-                  overflow: 'hidden',
-                  border: `1px solid rgba(255,255,255,0.15)`,
-                  boxShadow: isActive ? `0 24px 60px rgba(0,0,0,0.8), 0 0 100px rgba(220, 20, 20, 0.4)` : '0 12px 30px rgba(0,0,0,0.5)',
-                  transform: `translateX(${translateX}px) scale(${scale})`,
-                  filter: `blur(${blur}px) brightness(${brightness})`,
-                  opacity: opacity,
-                  zIndex: zIndex,
-                  transition: 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
-                  cursor: isActive ? 'default' : 'pointer',
-                  pointerEvents: opacity === 0 ? 'none' : 'auto'
-                }}
-              >
-                <video
-                  src={item.vid}
-                  poster={item.poster}
-                  muted={!isActive} // sound only for active
-                  controls={isActive} // native controls when active
-                  playsInline
-                  loop
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, transition: 'transform 0.5s ease', pointerEvents: isActive ? 'auto' : 'none' }}
-                  onMouseEnter={e => { if (!isActive) e.currentTarget.style.transform = 'scale(1.05)'; }}
-                  onMouseLeave={e => { if (!isActive) e.currentTarget.style.transform = 'scale(1)'; }}
-                  ref={el => videoRefs.current[i] = el}
-                />
-
-                {/* Custom Overlay (hidden when active so controls are visible) */}
-                <div style={{
-                  position: 'absolute', inset: 0, pointerEvents: 'none',
-                  opacity: isActive ? 0 : 1, transition: 'opacity 0.3s ease'
-                }}>
-                  <div style={{ position: 'absolute', bottom: 20, left: 20, right: 20 }}>
-                    <div style={{ fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 6, opacity: 0.8, color: T.paper }}>Nature</div>
-                    <h3 style={{ fontFamily: F.display, fontSize: 24, margin: 0, fontWeight: 600, color: T.paper }}>{item.title}</h3>
-                  </div>
-                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.paper, fontSize: 24, border: '1px solid rgba(255,255,255,0.3)' }}>▶</div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      <SPVideoCarousel T={T} F={F} items={carouselItems} title="Hero" titleIt="Reels." dek="Click cards to bring them into focus." bg={T.ink} textColor={T.paper} />
 
       {/* Pinterest Masonry Grid */}
       <section style={{ padding: isMobile ? '60px 20px' : '100px 40px' }}>
@@ -474,7 +360,7 @@ export default function SPServiceDetail({ themeKey = 'classic', typeKey = 'acidG
           <h2 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 8vw, 100px)', margin: '0 0 32px', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
             Want this for <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400 }}>your brand?</span>
           </h2>
-          <Link to="/contact" style={{ display: 'inline-flex', padding: '16px 32px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', fontFamily: F.body, border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+          <Link to="/contact" style={{ display: 'inline-flex', padding: '16px 32px', background: T.paper, color: T.ink, borderRadius: 999, fontSize: 16, fontWeight: 600, textDecoration: 'none', fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Start a project →</Link>
         </div>

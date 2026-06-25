@@ -3,11 +3,13 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Homie from './pages/Homie.jsx';
 import Work from './pages/Work.jsx';
-import Studio from './pages/Studio.jsx';
 import Services from './pages/Services.jsx';
-import Journal from './pages/Journal.jsx';
 import Contact from './pages/Contact.jsx';
 import ServiceDetail from './pages/Service-detail.jsx';
+import DomainSocialMedia from './pages/DomainSocialMedia.jsx';
+import DomainTalkingHeads from './pages/DomainTalkingHeads.jsx';
+import DomainCorporates from './pages/DomainCorporates.jsx';
+import DomainPromotion from './pages/DomainPromotion.jsx';
 import { SP_THEMES, SP_TYPE } from './theme/theme';
 import { SPNoise } from './components/SPKit';
 import KiriPet from './components/Kiri/KiriPet.jsx';
@@ -68,11 +70,15 @@ export default function App() {
         <Route path="/" element={<Home themeKey={themeKey} typeKey={typeKey} />} />
         <Route path="/homie" element={<Homie themeKey={themeKey} typeKey={typeKey} />} />
         <Route path="/work" element={<Work themeKey={themeKey} typeKey={typeKey} />} />
-        <Route path="/studio" element={<Studio themeKey={themeKey} typeKey={typeKey} />} />
         <Route path="/services" element={<Services themeKey={themeKey} typeKey={typeKey} />} />
-        <Route path="/journal" element={<Journal themeKey={themeKey} typeKey={typeKey} />} />
         <Route path="/contact" element={<Contact themeKey={themeKey} typeKey={typeKey} />} />
         <Route path="/service-detail" element={<ServiceDetail themeKey={themeKey} typeKey={typeKey} />} />
+        
+        {/* Domain Detail Pages */}
+        <Route path="/domain/social-media" element={<DomainSocialMedia themeKey={themeKey} typeKey={typeKey} />} />
+        <Route path="/domain/talking-heads" element={<DomainTalkingHeads themeKey={themeKey} typeKey={typeKey} />} />
+        <Route path="/domain/corporates" element={<DomainCorporates themeKey={themeKey} typeKey={typeKey} />} />
+        <Route path="/domain/promotion" element={<DomainPromotion themeKey={themeKey} typeKey={typeKey} />} />
       </Routes>
 
       {/* Global Interactive Digital Pet */}

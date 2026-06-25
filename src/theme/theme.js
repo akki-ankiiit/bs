@@ -48,7 +48,7 @@ export const SP_THEMES = {
 
 export const SP_TYPE = {
   acidGaraHelv: {
-    name: 'Acid™ · Garamond · Helvetica',
+    name: 'Acid™ · Garamond · Grotesk',
     display: '"Space Grotesk", "Acid Grotesk", "Helvetica Neue", sans-serif',
     italic: '"EB Garamond", "Apple Garamond", Garamond, serif',
     body: '"Helvetica Neue", Helvetica, Arial, sans-serif',

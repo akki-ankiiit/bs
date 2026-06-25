@@ -495,7 +495,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
         <PosterCarousel items={carouselPosters} />
 
         {/* WHY US */}
-        <div style={{ position: 'relative', zIndex: 2, height: isMobile ? 'auto' : 500, paddingBottom: isMobile ? 40 : 0, margin: '0 auto', marginTop: isMobile ? 120 : 80, width: '100%', maxWidth: 1200 }}>
+        <div style={{ position: 'relative', zIndex: 2, height: isMobile ? 'auto' : 500, paddingBottom: isMobile ? 40 : 0, margin: '0 auto', marginTop: isMobile ? 80 : 20, width: '100%', maxWidth: 1200 }}>
 
           <style>{`
             @keyframes orbitFloat {

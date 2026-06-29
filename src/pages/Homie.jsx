@@ -20,7 +20,7 @@ import poster5 from '../poster/MHC Vizag Poster.jpg';
 import poster6 from '../poster/MHC new 2.jpg';
 import poster7 from '../poster/ed.jpg';
 
-export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }) {
+export default function Homie({ themeKey = 'classic', typeKey = 'allHelv' }) {
   const T = SP_THEMES[themeKey];
   const F = SP_TYPE[typeKey];
 
@@ -178,12 +178,12 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
 
             <SPParallax speed={0.08} style={{ ...heroBlock, order: isMobile ? 2 : 1, textAlign: isMobile ? 'center' : 'left', flex: 1 }}>
               <div style={heroBlockHead}>↳ What we are</div>
-              <p style={{ margin: 0 }}>A creative studio making content campaigns, scripts, edits, and brand work — with AI quietly doing the laundry in the back.</p>
+              <p style={{ margin: 0 }}>We're creative-first, not brief-first. Every story, edit, and format gets pushed until it's actually worth watching, Visuals that hit, messaging that's clear, nothing safe in between.</p>
             </SPParallax>
 
             <SPParallax speed={0.06} style={{ ...heroBlock, order: 3, textAlign: isMobile ? 'center' : 'right', flex: 1 }}>
               <div style={heroBlockHead}>(2) Discover ↓</div>
-              <p style={{ margin: 0 }}>Scripts → Shoots → Edits → AI → Posts → Repeat. Seven days a week, minus the occasional Sunday.</p>
+              <p style={{ margin: 0 }}>Creative-first, always. We don't make content to fill a calendar, we make it to be watched, shared, and remembered.</p>
             </SPParallax>
           </div>
         </div>
@@ -378,10 +378,10 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
 
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 24, marginTop: 24, marginBottom: 0 }}>
             {[
-              { title: 'Social Media', desc: 'Reels, Shorts. The algorithms love us.', thumbnail: '/uploads/domain_new_1.png', bg: mint, path: '/domain/social-media' },
-              { title: 'Talking Heads', desc: 'Direct, clear, authentic communication.', thumbnail: '/uploads/domain_new_2.jpg', bg: sky, path: '/domain/talking-heads' },
-              { title: 'Corporates', desc: 'Professional, but never boring.', thumbnail: '/uploads/domain_new_3.png', bg: butter, path: '/domain/corporates' },
-              { title: 'Promotion', desc: 'Campaigns that look stunning.', thumbnail: '/uploads/domain_new_4.jpg', bg: peach, path: '/domain/promotion' },
+              { title: 'Content Production', desc: 'Scripted, shot, edited, ready to post.', thumbnail: '/uploads/domain_new_1.png', bg: mint, path: '/domain/social-media' },
+              { title: 'Campaign Strategy', desc: 'The ideas that help you outshine.', thumbnail: '/uploads/domain_new_2.jpg', bg: sky, path: '/domain/talking-heads' },
+              { title: 'Editing', desc: 'Raw footage in. Magic out.', thumbnail: '/uploads/domain_new_3.png', bg: butter, path: '/domain/corporates' },
+              { title: 'Branding', desc: 'Looks good. Sounds like you.', thumbnail: '/uploads/domain_new_4.jpg', bg: peach, path: '/domain/promotion' },
             ].map((card, idx) => {
               return (
                 <Link to={card.path} key={idx} style={{ textDecoration: 'none', display: 'block' }}>
@@ -599,8 +599,8 @@ export default function Homie({ themeKey = 'classic', typeKey = 'acidGaraHelv' }
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6, fontFamily: F.body, marginBottom: 24 }}>§ 05 / Let's talk</div>
-          <h2 style={{ fontFamily: '"Outfit", sans-serif', fontSize: 'clamp(48px, 10vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink }}>
-            Let's <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>make</span><br />something.
+          <h2 style={{ fontFamily: F.display, fontSize: 'clamp(48px, 10vw, 120px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: 0, color: T.ink }}>
+            You got a <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>brief,</span><br />We got an idea.
           </h2>
           <Link to="/contact" style={{ display: 'inline-flex', gap: 12, marginTop: isMobile ? 40 : 80, padding: isMobile ? '16px 24px' : '20px 32px', background: T.ink, color: T.paper, borderRadius: 999, fontSize: 15, fontWeight: 500, fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', textDecoration: 'none', border: `1px solid ${T.ink}`, transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `4px 5px 0 ${T.ink}`; }}

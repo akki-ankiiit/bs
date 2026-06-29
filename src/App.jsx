@@ -18,7 +18,7 @@ export default function App() {
   const location = useLocation();
   // Hardcode defaults since tweaks panel is removed
   const themeKey = 'classic';
-  const typeKey = 'acidGaraHelv';
+  const typeKey = 'allHelv';
 
   const T = SP_THEMES[themeKey];
   const F = SP_TYPE[typeKey];

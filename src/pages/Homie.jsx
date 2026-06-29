@@ -55,7 +55,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'allHelv' }) {
   const wordmark = { fontFamily: F.display, fontSize: 'clamp(180px, 24vw, 360px)', lineHeight: 0.82, fontWeight: 700, letterSpacing: '-0.06em', margin: 0, textAlign: 'center', position: 'relative', color: T.ink };
   const wordmarkItal = { fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.ink, letterSpacing: '-0.03em' };
   const heroBottom = { display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'center' : 'start', gap: isMobile ? 40 : 20, marginTop: isMobile ? 40 : 80 };
-  const heroBlock = { fontSize: 14, lineHeight: 1.5, maxWidth: 320, fontFamily: F.body };
+  const heroBlock = { fontSize: 14, lineHeight: 1.5, maxWidth: 420, fontFamily: F.body };
   const heroBlockHead = { fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12, opacity: 0.6 };
   const heroDek = { fontFamily: F.italic, fontStyle: 'italic', fontSize: 28, lineHeight: 1.25, textAlign: 'center', color: T.ink };
 
@@ -154,7 +154,7 @@ export default function Homie({ themeKey = 'classic', typeKey = 'allHelv' }) {
         <SPNoise T={T} />
         <div style={{ position: 'relative', zIndex: 2 }}>
           <div style={heroMeta}>
-            <span>✳ Blackspace® — Homie</span>
+            <span>✳ Blackspace® — Home</span>
             <span>Bengaluru · IN · Est. 2023</span>
           </div>
 
@@ -334,8 +334,8 @@ export default function Homie({ themeKey = 'classic', typeKey = 'allHelv' }) {
           <h2 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 8vw, 80px)', lineHeight: 0.9, fontWeight: 700, letterSpacing: '-0.04em', margin: '0 0 16px 0', color: T.ink }}>
             Work <span style={{ fontFamily: F.italic, fontStyle: 'italic', fontWeight: 400, color: T.popA }}>Experience.</span>
           </h2>
-          <p style={{ fontFamily: F.italic, fontStyle: 'italic', fontSize: 'clamp(20px, 3vw, 28px)', lineHeight: 1.4, fontWeight: 400, color: T.ink, opacity: 0.9, maxWidth: 800, margin: '0 auto' }}>
-            We take a <span style={{ color: T.popA, fontFamily: F.display, fontStyle: 'normal', fontWeight: 600, letterSpacing: '-0.02em' }}>creative-first</span> approach to everything we make, from storytelling, editing styles, to trying new formats. Our work blends strong visuals with clear messaging.
+          <p style={{ fontFamily: F.body, fontSize: 'clamp(16px, 2.5vw, 20px)', lineHeight: 1.4, fontWeight: 400, color: T.ink, opacity: 0.9, maxWidth: 800, margin: '0 auto' }}>
+            We take a <span style={{ color: T.popA, fontWeight: 600, letterSpacing: '-0.02em' }}>creative-first</span> approach to everything we make, from storytelling, editing styles, to trying new formats. Our work blends strong visuals with clear messaging.
           </p>
         </div>
 

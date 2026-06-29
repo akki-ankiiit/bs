@@ -455,8 +455,8 @@ export default function Homie({ themeKey = 'classic', typeKey = 'allHelv' }) {
 
                     {/* Content Area */}
                     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, zIndex: 2, position: 'relative' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-                        <h4 style={{ margin: 0, fontFamily: F.display, fontSize: 'clamp(22px, 2.5vw, 28px)', lineHeight: 1.1, fontWeight: 600, letterSpacing: '-0.02em', maxWidth: '85%' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+                        <h4 style={{ margin: 0, fontFamily: F.display, fontSize: 'clamp(18px, 2vw, 22px)', lineHeight: 1.1, fontWeight: 600, letterSpacing: '-0.02em', maxWidth: '85%' }}>
                           {card.title}
                         </h4>
                         <div className="arrow-btn" style={{
